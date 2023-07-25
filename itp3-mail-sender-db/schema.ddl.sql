@@ -10,4 +10,4 @@ CREATE TABLE customers (
     marketing_consent BOOLEAN NOT NULL
 );
 
-ALTER SEQUENCE customer_number_seq RESTART WITH 10000;
+ALTER SEQUENCE customers_customer_number_seq RESTART WITH 10000;
