@@ -27,6 +27,15 @@ public class CustomerServiceImpl
 	customer.setMarketingConsent(
 		inputs.getMarketingConsent());
 	this.customers.save(customer);
+
+    }
+
+    @Override
+    public boolean emailValueExists(String email)
+	    throws UnsupportedOperationException {
+
+	return this.customers
+		.existsByContactEmail(email.toString());
     }
 
 }
