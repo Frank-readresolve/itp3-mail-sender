@@ -26,6 +26,7 @@ public class CustomerServiceImpl
 	customer.setContactEmail(inputs.getContactEmail());
 	customer.setMarketingConsent(
 		inputs.getMarketingConsent());
+	this.customers.save(customer);
     }
 
 }

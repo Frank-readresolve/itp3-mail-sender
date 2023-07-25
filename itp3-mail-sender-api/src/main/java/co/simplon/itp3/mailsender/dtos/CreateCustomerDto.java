@@ -10,11 +10,11 @@ public class CreateCustomerDto {
 
     @NotBlank
     @Size(max = 100)
-    @Pattern(regexp = "[a-zA-Z]++")
+    @Pattern(regexp = "[a-zA-Z]+")
     private String firstName;
     @NotBlank
     @Size(max = 100)
-    @Pattern(regexp = "[a-zA-Z]++")
+    @Pattern(regexp = "[a-zA-Z]+")
     private String lastName;
     @Email
     @NotNull
@@ -24,7 +24,7 @@ public class CreateCustomerDto {
     private Boolean marketingConsent;
     @NotBlank
     @Size(max = 100)
-    @Pattern(regexp = "[a-zA-Z_0-9]++")
+    @Pattern(regexp = "[a-zA-Z_0-9]+")
     private String customerName;
 
     public String getFirstName() {
