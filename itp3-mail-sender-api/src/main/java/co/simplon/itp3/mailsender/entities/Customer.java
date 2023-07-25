@@ -24,7 +24,7 @@ public class Customer {
     private String contactEmail;
     @Column(name = "marketing_consent")
     private Boolean marketingConsent;
-    @Column(name = "customer_number")
+    @Column(name = "customer_number", insertable = false, updatable = false)
     private Long customerNumber;
 
     public Long getId() {
