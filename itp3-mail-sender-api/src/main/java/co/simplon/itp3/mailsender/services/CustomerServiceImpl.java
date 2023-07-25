@@ -26,8 +26,6 @@ public class CustomerServiceImpl
 	customer.setContactEmail(inputs.getContactEmail());
 	customer.setMarketingConsent(
 		inputs.getMarketingConsent());
-	Long customNumber = 10000L;
-	customer.setCustomerNumber(customNumber);
     }
 
 }
