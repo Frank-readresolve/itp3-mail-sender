@@ -6,4 +6,7 @@ public interface CustomerService {
     void create(CreateCustomerDto inputs);
 
     public boolean emailValueExists(String email);
+
+    public boolean customerNameValueExist(
+	    String customerName);
 }

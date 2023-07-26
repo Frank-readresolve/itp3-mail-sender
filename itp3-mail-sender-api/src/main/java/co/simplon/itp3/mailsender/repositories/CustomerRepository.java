@@ -9,4 +9,6 @@ public interface CustomerRepository
 
     boolean existsByContactEmail(String string);
 
+    boolean existsByCustomerName(String string);
+
 }

@@ -38,4 +38,12 @@ public class CustomerServiceImpl
 		.existsByContactEmail(email.toString());
     }
 
+    @Override
+    public boolean customerNameValueExist(
+	    String customerName)
+	    throws UnsupportedOperationException {
+	return this.customers.existsByCustomerName(
+		customerName.toString());
+    }
+
 }

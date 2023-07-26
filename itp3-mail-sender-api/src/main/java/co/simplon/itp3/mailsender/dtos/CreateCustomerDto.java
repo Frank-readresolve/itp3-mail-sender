@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import co.simplon.itp3.mailsender.customValidations.UniqueCustomerName;
 import co.simplon.itp3.mailsender.customValidations.UniqueEmail;
 
 public class CreateCustomerDto {
@@ -32,6 +33,7 @@ public class CreateCustomerDto {
     @NotBlank
     @Size(max = 100)
     @Pattern(regexp = "[a-zA-Z_0-9]+")
+    @UniqueCustomerName
     private String customerName;
 
     public String getFirstName() {
