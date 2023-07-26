@@ -17,7 +17,10 @@ public class UniqueEmailValidator implements
     @Override
     public boolean isValid(String email,
 	    ConstraintValidatorContext context) {
+	if (email != null) {
+	    return !this.service.emailValueExists(email);
+	}
+	return true;
 
-	return !this.service.emailValueExists(email);
     }
 };

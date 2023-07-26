@@ -18,8 +18,11 @@ public class UniqueCustomerNameValidator implements
     @Override
     public boolean isValid(String customerName,
 	    ConstraintValidatorContext context) {
-	return !this.service
-		.customerNameValueExist(customerName);
+	if (customerName != null) {
+	    return !this.service
+		    .customerNameValueExist(customerName);
+	}
+	return true;
     }
 
 }
