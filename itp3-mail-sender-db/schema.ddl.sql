@@ -20,4 +20,5 @@ CREATE TABLE subscriptions(
 	max_mail_num INTEGER NOT NULL
 );
 
+
 ALTER SEQUENCE customers_customer_number_seq RESTART WITH 10000;
