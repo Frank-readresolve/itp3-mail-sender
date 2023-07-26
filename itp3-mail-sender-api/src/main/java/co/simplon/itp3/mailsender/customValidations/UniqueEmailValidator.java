@@ -8,7 +8,7 @@ import co.simplon.itp3.mailsender.services.CustomerService;
 public class UniqueEmailValidator implements
 	ConstraintValidator<UniqueEmail, String> {
 
-    private CustomerService service;
+    private final CustomerService service;
 
     public UniqueEmailValidator(CustomerService service) {
 	this.service = service;

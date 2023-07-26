@@ -8,7 +8,7 @@ import co.simplon.itp3.mailsender.services.CustomerService;
 public class UniqueCustomerNameValidator implements
 	ConstraintValidator<UniqueCustomerName, String> {
 
-    private CustomerService service;
+    private final CustomerService service;
 
     public UniqueCustomerNameValidator(
 	    CustomerService service) {
