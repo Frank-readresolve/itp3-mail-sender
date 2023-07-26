@@ -7,10 +7,13 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import co.simplon.itp3.mailsender.customValidations.UniqueSubscriptionName;
+
 public class CreateSubscriptionDto {
 
     @NotBlank
     @Size(max = 100)
+    @UniqueSubscriptionName
     private String subscriptionName;
     @NotBlank
     @Pattern(regexp = "[a-zA-Z0-9\\s]+")

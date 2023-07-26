@@ -32,4 +32,12 @@ public class SubscriptionServiceImpl
 	this.subscriptions.save(subscription);
     }
 
+    @Override
+    public boolean subscriptionNameValueExist(
+	    String subscriptionName)
+	    throws UnsupportedOperationException {
+	return this.subscriptions.existsBySubscriptionName(
+		subscriptionName.toString());
+    }
+
 }

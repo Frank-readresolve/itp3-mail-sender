@@ -5,4 +5,7 @@ import co.simplon.itp3.mailsender.dtos.CreateSubscriptionDto;
 public interface SubscriptionService {
 
     void create(CreateSubscriptionDto inputs);
+
+    public boolean subscriptionNameValueExist(
+	    String subscriptionName);
 }
