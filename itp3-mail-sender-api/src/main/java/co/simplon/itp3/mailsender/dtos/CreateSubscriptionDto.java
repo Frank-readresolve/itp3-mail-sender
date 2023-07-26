@@ -13,7 +13,7 @@ public class CreateSubscriptionDto {
     @Size(max = 100)
     private String subscriptionName;
     @NotBlank
-    @Pattern(regexp = "[a-zA-Z0-9]+")
+    @Pattern(regexp = "[a-zA-Z0-9\\s]+")
     private String description;
     @NotNull
     private Boolean freeSubscription;
