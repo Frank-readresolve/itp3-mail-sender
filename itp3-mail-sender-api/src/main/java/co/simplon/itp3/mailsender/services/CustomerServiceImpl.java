@@ -26,6 +26,8 @@ public class CustomerServiceImpl
 	customer.setContactEmail(inputs.getContactEmail());
 	customer.setMarketingConsent(
 		inputs.getMarketingConsent());
+	long countCustomerNumber = this.customers.count();
+	customer.setCustomerNumber(countCustomerNumber + 1);
 	this.customers.save(customer);
 
     }
