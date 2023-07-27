@@ -21,3 +21,7 @@ CREATE TABLE subscriptions(
 	max_mail_num INTEGER NOT NULL
 );
 
+CREATE SEQUENCE IF NOT EXISTS subscriptions_subscription_code_seq
+    START WITH 1
+    OWNED BY subscriptions.subscription_code;
+

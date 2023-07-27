@@ -29,7 +29,8 @@ public class SubscriptionServiceImpl
 	subscription.setDurationInMonths(
 		inputs.getDurationInMonths());
 	subscription.setMaxMailNum(inputs.getMaxMailNum());
-	Long code = this.subscriptions.count() + 1;
+	Long code = this.subscriptions
+		.getNextValMySequence();
 	subscription.setSubscriptionCode(
 		"CD".concat(code.toString()));
 	this.subscriptions.save(subscription);
