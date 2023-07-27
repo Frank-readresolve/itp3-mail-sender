@@ -1,12 +1,15 @@
 package co.simplon.itp3.mailsender.dtos;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-public class SimpleMailDto {
+public class AnonymousEmail {
 
-    @NotNull
+    @NotBlank
+    @Email
     private String primaryRecipient;
 
     @NotNull
