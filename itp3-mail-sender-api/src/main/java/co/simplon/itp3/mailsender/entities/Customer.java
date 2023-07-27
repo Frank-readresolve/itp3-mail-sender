@@ -2,38 +2,29 @@ package co.simplon.itp3.mailsender.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "customers")
-public class Customer {
+public class Customer extends AbstractEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     @Column(name = "first_name")
     private String firstName;
+
     @Column(name = "last_name")
     private String lastName;
+
     @Column(name = "customer_name")
     private String customerName;
+
     @Column(name = "contact_email")
     private String contactEmail;
+
     @Column(name = "marketing_consent")
     private Boolean marketingConsent;
+
     @Column(name = "customer_number")
     private Long customerNumber;
-
-    public Long getId() {
-	return id;
-    }
-
-    public void setId(Long id) {
-	this.id = id;
-    }
 
     public String getFirstName() {
 	return firstName;
@@ -86,13 +77,11 @@ public class Customer {
 
     @Override
     public String toString() {
-	return "{id=" + id + ", firstName=" + firstName
-		+ ", lastName=" + lastName
-		+ ", customerName=" + customerName
-		+ ", contactEmail=" + contactEmail
-		+ ", marketingConsent=" + marketingConsent
-		+ ", customerNumber=" + customerNumber
-		+ "}";
+	return "{firstName=" + firstName + ", lastName="
+		+ lastName + ", customerName="
+		+ customerName + ", contactEmail="
+		+ contactEmail + ", marketingConsent="
+		+ marketingConsent + ", customerNumber="
+		+ customerNumber + "}";
     }
-
 }
