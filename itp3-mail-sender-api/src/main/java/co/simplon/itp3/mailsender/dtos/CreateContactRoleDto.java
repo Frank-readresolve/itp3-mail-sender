@@ -9,32 +9,32 @@ public class CreateContactRoleDto {
     @NotBlank
     @Size(min = 1, max = 5)
     @Pattern(regexp = "[A-Z]+")
-    private String codeRole;
+    private String contactRole;
     @NotBlank
     @Size(min = 1, max = 100)
     @Pattern(regexp = "[a-zA-Z]+")
-    private String codeName;
+    private String contactName;
 
-    public String getCodeRole() {
-	return codeRole;
+    public String getContactRole() {
+	return contactRole;
     }
 
-    public void setCodeRole(String codeRole) {
-	this.codeRole = codeRole;
+    public void setContactRole(String contactRole) {
+	this.contactRole = contactRole;
     }
 
-    public String getCodeName() {
-	return codeName;
+    public String getContactName() {
+	return contactName;
     }
 
-    public void setCodeName(String codeName) {
-	this.codeName = codeName;
+    public void setContactName(String contactName) {
+	this.contactName = contactName;
     }
 
     @Override
     public String toString() {
-	return "{codeRole=" + codeRole + ", codeName="
-		+ codeName + "}";
+	return "{contactRole=" + contactRole
+		+ ", contactName=" + contactName + "}";
     }
 
 }
