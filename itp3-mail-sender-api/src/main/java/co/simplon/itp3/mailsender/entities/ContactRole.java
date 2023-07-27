@@ -14,10 +14,10 @@ public class ContactRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "code_role")
-    private String codeRole;
-    @Column(name = "code_name")
-    private String codeName;
+    @Column(name = "contact_role")
+    private String contactRole;
+    @Column(name = "contact_name")
+    private String contactName;
 
     public Long getId() {
 	return id;
@@ -27,26 +27,26 @@ public class ContactRole {
 	this.id = id;
     }
 
-    public String getCodeRole() {
-	return codeRole;
+    public String getContactRole() {
+	return contactRole;
     }
 
-    public void setCodeRole(String codeRole) {
-	this.codeRole = codeRole;
+    public void setContactRole(String codeRole) {
+	this.contactRole = codeRole;
     }
 
-    public String getCodeName() {
-	return codeName;
+    public String getContactName() {
+	return contactName;
     }
 
-    public void setCodeName(String codeName) {
-	this.codeName = codeName;
+    public void setContactName(String codeName) {
+	this.contactName = codeName;
     }
 
     @Override
     public String toString() {
-	return "{id=" + id + ", codeRole=" + codeRole
-		+ ", codeName=" + codeName + "}";
+	return "{id=" + id + ", codeRole=" + contactRole
+		+ ", codeName=" + contactName + "}";
     }
 
 }

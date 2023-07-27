@@ -23,8 +23,8 @@ public class ContactRoleServiceImpl
     @Override
     public void create(CreateContactRoleDto inputs) {
 	ContactRole contactRole = new ContactRole();
-	contactRole.setCodeName(inputs.getCodeName());
-	contactRole.setCodeRole(inputs.getCodeName());
+	contactRole.setContactName(inputs.getCodeName());
+	contactRole.setContactRole(inputs.getCodeRole());
 	this.contactRolesRepo.save(contactRole);
     }
 
