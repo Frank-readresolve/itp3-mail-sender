@@ -1,5 +1,12 @@
 DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS subscriptions;
+DROP TABLE IF EXISTS contact_roles;
+
+CREATE TABLE contact_roles (
+    id SERIAL PRIMARY KEY,
+    code_role VARCHAR(5) UNIQUE NOT NULL,
+    code_name VARCHAR(100) UNIQUE NOT NULL
+);
 
 CREATE TABLE customers (
     id SERIAL PRIMARY KEY,

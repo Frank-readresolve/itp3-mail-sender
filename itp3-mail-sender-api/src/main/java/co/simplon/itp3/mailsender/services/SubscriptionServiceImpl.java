@@ -1,12 +1,14 @@
 package co.simplon.itp3.mailsender.services;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import co.simplon.itp3.mailsender.dtos.CreateSubscriptionDto;
 import co.simplon.itp3.mailsender.entities.Subscription;
 import co.simplon.itp3.mailsender.repositories.SubscriptionRepository;
 
 @Service
+@Transactional(readOnly = true)
 public class SubscriptionServiceImpl
 	implements SubscriptionService {
 
@@ -18,6 +20,7 @@ public class SubscriptionServiceImpl
     }
 
     @Override
+    @Transactional
     public void create(CreateSubscriptionDto inputs) {
 	Subscription subscription = new Subscription();
 	subscription.setSubscriptionName(

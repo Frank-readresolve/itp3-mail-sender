@@ -1,12 +1,14 @@
 package co.simplon.itp3.mailsender.services;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import co.simplon.itp3.mailsender.dtos.CreateCustomerDto;
 import co.simplon.itp3.mailsender.entities.Customer;
 import co.simplon.itp3.mailsender.repositories.CustomerRepository;
 
 @Service
+@Transactional(readOnly = true)
 public class CustomerServiceImpl
 	implements CustomerService {
 
@@ -18,6 +20,7 @@ public class CustomerServiceImpl
     }
 
     @Override
+    @Transactional
     public void create(CreateCustomerDto inputs) {
 	Customer customer = new Customer();
 	customer.setCustomerName(inputs.getCustomerName());
