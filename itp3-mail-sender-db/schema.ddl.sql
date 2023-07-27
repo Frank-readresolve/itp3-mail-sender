@@ -25,3 +25,4 @@ CREATE SEQUENCE IF NOT EXISTS subscriptions_subscription_code_seq
     START WITH 1
     OWNED BY subscriptions.subscription_code;
 
+ALTER SEQUENCE customers_customer_number_seq RESTART WITH 10000;
