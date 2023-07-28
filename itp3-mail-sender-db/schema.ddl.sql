@@ -18,7 +18,7 @@ CREATE TABLE customers (
     last_name VARCHAR(100) NOT NULL,
     contact_email VARCHAR(256) NOT NULL,
     marketing_consent BOOLEAN NOT NULL,
-    role_id INTEGER,
+    role_id INTEGER NOT NULL,
     constraint pk_customer_id primary key(id),
     constraint fk_contact_role_id 
 			foreign key (role_id)
