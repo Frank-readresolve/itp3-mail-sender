@@ -36,6 +36,9 @@ public class CreateCustomerDto {
     @UniqueCustomerName
     private String customerName;
 
+    @NotNull
+    private Long roleId;
+
     public String getFirstName() {
 	return firstName;
     }
@@ -77,13 +80,21 @@ public class CreateCustomerDto {
 	this.customerName = customerName;
     }
 
+    public Long getRoleId() {
+	return roleId;
+    }
+
+    public void setRoleId(Long roleId) {
+	this.roleId = roleId;
+    }
+
     @Override
     public String toString() {
 	return "{firstName=" + firstName + ", lastName="
 		+ lastName + ", contactEmail="
 		+ contactEmail + ", marketingConsent="
 		+ marketingConsent + ", customerName="
-		+ customerName + "}";
+		+ customerName + ", roleId=" + roleId + "}";
     }
 
 }

@@ -4,7 +4,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import co.simplon.itp3.mailsender.dtos.CreateCustomerDto;
+import co.simplon.itp3.mailsender.entities.ContactRole;
 import co.simplon.itp3.mailsender.entities.Customer;
+import co.simplon.itp3.mailsender.repositories.ContactRoleRepository;
 import co.simplon.itp3.mailsender.repositories.CustomerRepository;
 
 @Service
@@ -14,9 +16,12 @@ public class CustomerServiceImpl
 
     private CustomerRepository customers;
 
-    public CustomerServiceImpl(
-	    CustomerRepository customers) {
+    private ContactRoleRepository contactRoles;
+
+    public CustomerServiceImpl(CustomerRepository customers,
+	    ContactRoleRepository contactRoles) {
 	this.customers = customers;
+	this.contactRoles = contactRoles;
     }
 
     @Override
@@ -32,6 +37,9 @@ public class CustomerServiceImpl
 	long countCustomerNumber = this.customers
 		.getNextValMySequence();
 	customer.setCustomerNumber(countCustomerNumber);
+	ContactRole contactRole = contactRoles
+		.getReferenceById(inputs.getRoleId());
+	customer.setContactRole(contactRole);
 	this.customers.save(customer);
 
     }
