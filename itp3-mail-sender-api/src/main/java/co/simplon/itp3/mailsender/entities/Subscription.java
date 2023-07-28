@@ -18,7 +18,7 @@ public class Subscription extends AbstractEntity {
     private String description;
 
     @Column(name = "free_subscription")
-    private Boolean freeSubscription;
+    private boolean freeSubscription;
 
     @Column(name = "duration_in_months")
     private Short durationInMonths;

@@ -3,7 +3,6 @@ package co.simplon.itp3.mailsender.controllers;
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,13 +14,11 @@ import co.simplon.itp3.mailsender.services.EmailService;
 
 @RestController
 @RequestMapping("/send-mail")
-@CrossOrigin
 public class MailController {
 
-    private EmailService service;
+    private final EmailService service;
 
-    public MailController(
-	    EmailService service) {
+    public MailController(EmailService service) {
 	this.service = service;
     }
 

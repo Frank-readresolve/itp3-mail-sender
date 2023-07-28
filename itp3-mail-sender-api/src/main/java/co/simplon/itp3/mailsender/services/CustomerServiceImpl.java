@@ -14,7 +14,7 @@ import co.simplon.itp3.mailsender.repositories.CustomerRepository;
 public class CustomerServiceImpl
 	implements CustomerService {
 
-    private CustomerRepository customers;
+    private final CustomerRepository customers;
 
     private ContactRoleRepository contactRoles;
 

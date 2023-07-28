@@ -3,7 +3,6 @@ package co.simplon.itp3.mailsender.controllers;
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,10 +14,9 @@ import co.simplon.itp3.mailsender.services.CustomerService;
 
 @RestController
 @RequestMapping("/customers")
-@CrossOrigin
 public class CustomerController {
 
-    private CustomerService service;
+    private final CustomerService service;
 
     public CustomerController(CustomerService service) {
 	this.service = service;

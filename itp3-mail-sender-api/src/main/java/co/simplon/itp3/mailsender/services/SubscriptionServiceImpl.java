@@ -12,7 +12,7 @@ import co.simplon.itp3.mailsender.repositories.SubscriptionRepository;
 public class SubscriptionServiceImpl
 	implements SubscriptionService {
 
-    private SubscriptionRepository subscriptions;
+    private final SubscriptionRepository subscriptions;
 
     public SubscriptionServiceImpl(
 	    SubscriptionRepository subscriptions) {
