@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS subscriptions;
 DROP TABLE IF EXISTS contact_roles;
+DROP TABLE IF EXISTS email_templates;
 
 CREATE TABLE contact_roles (
     id SERIAL,
@@ -37,6 +38,13 @@ CREATE TABLE subscriptions(
 	constraint pk_subscription_id primary key(id),
 	UNIQUE(subscription_name, subscription_code)
 );
+
+CREATE TABLE email_templates(
+	id SERIAL,
+	template_identifier VARCHAR(20) UNIQUE NOT NULL,
+	subject_template VARCHAR(160) NOT NULL,
+	body_template VARCHAR(10000) NOT NULL
+)
 
 CREATE SEQUENCE IF NOT EXISTS subscriptions_subscription_code_seq
     START WITH 1
