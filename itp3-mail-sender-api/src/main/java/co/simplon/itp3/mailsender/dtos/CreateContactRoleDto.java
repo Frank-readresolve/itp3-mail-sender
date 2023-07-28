@@ -9,18 +9,18 @@ public class CreateContactRoleDto {
     @NotBlank
     @Size(min = 1, max = 5)
     @Pattern(regexp = "[A-Z]+")
-    private String contactRole;
+    private String roleCode;
     @NotBlank
     @Size(min = 1, max = 100)
     @Pattern(regexp = "[a-zA-Z]+")
     private String contactName;
 
     public String getContactRole() {
-	return contactRole;
+	return roleCode;
     }
 
     public void setContactRole(String contactRole) {
-	this.contactRole = contactRole;
+	this.roleCode = contactRole;
     }
 
     public String getContactName() {
@@ -33,8 +33,8 @@ public class CreateContactRoleDto {
 
     @Override
     public String toString() {
-	return "{contactRole=" + contactRole
-		+ ", contactName=" + contactName + "}";
+	return "{contactRole=" + roleCode + ", contactName="
+		+ contactName + "}";
     }
 
 }
