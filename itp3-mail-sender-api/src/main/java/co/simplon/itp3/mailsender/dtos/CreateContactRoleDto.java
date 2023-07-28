@@ -15,12 +15,12 @@ public class CreateContactRoleDto {
     @Pattern(regexp = "[a-zA-Z]+")
     private String contactName;
 
-    public String getContactRole() {
+    public String getRoleCode() {
 	return roleCode;
     }
 
-    public void setContactRole(String contactRole) {
-	this.roleCode = contactRole;
+    public void setRoleCode(String roleCode) {
+	this.roleCode = roleCode;
     }
 
     public String getContactName() {
@@ -33,7 +33,7 @@ public class CreateContactRoleDto {
 
     @Override
     public String toString() {
-	return "{contactRole=" + roleCode + ", contactName="
+	return "{roleCode=" + roleCode + ", contactName="
 		+ contactName + "}";
     }
 
