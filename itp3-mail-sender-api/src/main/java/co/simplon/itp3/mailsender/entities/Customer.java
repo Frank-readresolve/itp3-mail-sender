@@ -2,6 +2,8 @@ package co.simplon.itp3.mailsender.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -25,6 +27,10 @@ public class Customer extends AbstractEntity {
 
     @Column(name = "customer_number")
     private Long customerNumber;
+
+    @JoinColumn(name = "role_id")
+    @ManyToOne
+    private ContactRole contactRole;
 
     public String getFirstName() {
 	return firstName;
@@ -75,6 +81,14 @@ public class Customer extends AbstractEntity {
 	this.customerNumber = customerNumber;
     }
 
+    public ContactRole getContactRole() {
+	return contactRole;
+    }
+
+    public void setContactRole(ContactRole contactRole) {
+	this.contactRole = contactRole;
+    }
+
     @Override
     public String toString() {
 	return "{firstName=" + firstName + ", lastName="
@@ -82,6 +96,8 @@ public class Customer extends AbstractEntity {
 		+ customerName + ", contactEmail="
 		+ contactEmail + ", marketingConsent="
 		+ marketingConsent + ", customerNumber="
-		+ customerNumber + "}";
+		+ customerNumber + ", contactRole="
+		+ contactRole + "}";
     }
+
 }

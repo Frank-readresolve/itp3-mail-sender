@@ -14,6 +14,7 @@ public class CreateContactRoleDto {
     @Pattern(regexp = "[A-Z]+")
     @UniqueRoleCode
     private String roleCode;
+
     @NotBlank
     @Size(min = 1, max = 100)
     @Pattern(regexp = "[a-zA-Z]+")
