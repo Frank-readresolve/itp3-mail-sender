@@ -8,17 +8,17 @@ import javax.persistence.Table;
 @Table(name = "contact_roles")
 public class ContactRole extends AbstractEntity {
 
-    @Column(name = "contact_role")
-    private String contactRole;
+    @Column(name = "role_code")
+    private String roleCode;
     @Column(name = "contact_name")
     private String contactName;
 
-    public String getContactRole() {
-	return contactRole;
+    public String getRoleCode() {
+	return roleCode;
     }
 
-    public void setContactRole(String contactRole) {
-	this.contactRole = contactRole;
+    public void setRoleCode(String roleCode) {
+	this.roleCode = roleCode;
     }
 
     public String getContactName() {
@@ -31,8 +31,8 @@ public class ContactRole extends AbstractEntity {
 
     @Override
     public String toString() {
-	return "{contactRole=" + contactRole
-		+ ", contactName=" + contactName + "}";
+	return "{roleCode=" + roleCode + ", contactName="
+		+ contactName + "}";
     }
 
 }
