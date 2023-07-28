@@ -19,7 +19,8 @@ public class CreateSubscriptionDto {
     @Pattern(regexp = "[a-zA-Z0-9\\s]+")
     @Size(min = 1, max = 1000)
     private String description;
-    private boolean freeSubscription;
+    @NotNull
+    private Boolean freeSubscription;
     @NotNull
     @Min(1)
     @Max(12)

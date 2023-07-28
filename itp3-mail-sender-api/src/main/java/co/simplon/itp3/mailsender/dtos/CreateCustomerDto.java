@@ -2,6 +2,7 @@ package co.simplon.itp3.mailsender.dtos;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -25,8 +26,8 @@ public class CreateCustomerDto {
     @Size(min = 1, max = 256)
     @UniqueEmail
     private String contactEmail;
-
-    private boolean marketingConsent;
+    @NotNull
+    private Boolean marketingConsent;
 
     @NotBlank
     @Size(min = 1, max = 100)
