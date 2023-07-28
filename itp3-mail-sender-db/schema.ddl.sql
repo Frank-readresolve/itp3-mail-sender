@@ -4,35 +4,38 @@ DROP TABLE IF EXISTS contact_roles;
 
 CREATE TABLE contact_roles (
     id SERIAL,
-    role_code VARCHAR(5) UNIQUE NOT NULL,
-    contact_name VARCHAR(100) UNIQUE NOT NULL,
-    constraint pk_contact_role_id primary key(id)
+    role_code VARCHAR(5) NOT NULL,
+    contact_name VARCHAR(100) NOT NULL,
+    constraint pk_contact_role_id primary key(id),
+    UNIQUE (role_code, contact_name)
 );
 
 CREATE TABLE customers (
     id SERIAL,
-    customer_number SERIAL UNIQUE NOT NULL,
-    customer_name VARCHAR(100) UNIQUE NOT NULL,
+    customer_number SERIAL NOT NULL,
+    customer_name VARCHAR(100) NOT NULL,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
-    contact_email VARCHAR(256) UNIQUE NOT NULL,
+    contact_email VARCHAR(256) NOT NULL,
     marketing_consent BOOLEAN NOT NULL,
     role_id INTEGER
     constraint pk_customer_id primary key(id),
     constraint fk_contact_role_id 
 			foreign key (role_id)
-			references contact_roles(id)
+			references contact_roles(id),
+	UNIQUE(customer_number, customer_name, contact_email)
 );
 
 CREATE TABLE subscriptions(
 	id SERIAL,
-	subscription_name VARCHAR(100) UNIQUE NOT NULL,
-	subscription_code VARCHAR(10) UNIQUE NOT NULL,
+	subscription_name VARCHAR(100) NOT NULL,
+	subscription_code VARCHAR(10) NOT NULL,
 	description VARCHAR(1000) NOT NULL,
 	free_subscription BOOLEAN NOT NULL,
 	duration_in_months SMALLINT NOT NULL,
 	max_mail_num INTEGER NOT null,
-	constraint pk_subscription_id primary key(id)
+	constraint pk_subscription_id primary key(id),
+	UNIQUE(subscription_name, subscription_code)
 );
 
 CREATE SEQUENCE IF NOT EXISTS subscriptions_subscription_code_seq
