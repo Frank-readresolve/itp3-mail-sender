@@ -10,8 +10,8 @@ public class ContactRole extends AbstractEntity {
 
     @Column(name = "role_code")
     private String roleCode;
-    @Column(name = "contact_name")
-    private String contactName;
+    @Column(name = "contact_role_name")
+    private String contactRoleName;
 
     public String getRoleCode() {
 	return roleCode;
@@ -21,18 +21,19 @@ public class ContactRole extends AbstractEntity {
 	this.roleCode = roleCode;
     }
 
-    public String getContactName() {
-	return contactName;
+    public String getContactRoleName() {
+	return contactRoleName;
     }
 
-    public void setContactName(String contactName) {
-	this.contactName = contactName;
+    public void setContactRoleName(String contactRoleName) {
+	this.contactRoleName = contactRoleName;
     }
 
     @Override
     public String toString() {
-	return "{roleCode=" + roleCode + ", contactName="
-		+ contactName + "}";
+	return "{roleCode=" + roleCode
+		+ ", contactRoleName=" + contactRoleName
+		+ "}";
     }
 
 }

@@ -8,7 +8,7 @@ public interface ContactRoleService {
 
     public boolean roleCodeValueExists(String roleCode);
 
-    public boolean contactNameValueExists(
-	    String contactName);
+    public boolean contactRoleNameValueExists(
+	    String contactRoleName);
 
 }

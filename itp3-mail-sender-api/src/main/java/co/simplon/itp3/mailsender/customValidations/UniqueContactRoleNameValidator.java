@@ -5,22 +5,22 @@ import javax.validation.ConstraintValidatorContext;
 
 import co.simplon.itp3.mailsender.services.ContactRoleService;
 
-public class UniqueContactNameValidator implements
-	ConstraintValidator<UniqueContactName, String> {
+public class UniqueContactRoleNameValidator implements
+	ConstraintValidator<UniqueContactRoleName, String> {
 
     private final ContactRoleService service;
 
-    public UniqueContactNameValidator(
+    public UniqueContactRoleNameValidator(
 	    ContactRoleService service) {
 	this.service = service;
     }
 
     @Override
-    public boolean isValid(String contactName,
+    public boolean isValid(String contactRoleName,
 	    ConstraintValidatorContext context) {
-	if (contactName != null) {
-	    return !this.service
-		    .contactNameValueExists(contactName);
+	if (contactRoleName != null) {
+	    return !this.service.contactRoleNameValueExists(
+		    contactRoleName);
 	}
 	return true;
 

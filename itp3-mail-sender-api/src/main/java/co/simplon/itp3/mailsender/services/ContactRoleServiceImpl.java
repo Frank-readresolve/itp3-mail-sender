@@ -23,7 +23,8 @@ public class ContactRoleServiceImpl
     @Override
     public void create(CreateContactRoleDto inputs) {
 	ContactRole contactRole = new ContactRole();
-	contactRole.setContactName(inputs.getContactName());
+	contactRole.setContactRoleName(
+		inputs.getContactRoleName());
 	contactRole.setRoleCode(inputs.getRoleCode());
 	this.contactRolesRepo.save(contactRole);
     }
@@ -36,11 +37,12 @@ public class ContactRoleServiceImpl
     }
 
     @Override
-    public boolean contactNameValueExists(
-	    String contactName)
+    public boolean contactRoleNameValueExists(
+	    String contactRoleName)
 	    throws UnsupportedOperationException {
-	return this.contactRolesRepo.existsByContactName(
-		contactName.toString());
+	return this.contactRolesRepo
+		.existsByContactRoleName(
+			contactRoleName.toString());
     }
 
 }
