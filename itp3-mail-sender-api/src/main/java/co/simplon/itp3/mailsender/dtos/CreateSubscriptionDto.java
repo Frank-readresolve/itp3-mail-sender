@@ -20,7 +20,7 @@ public class CreateSubscriptionDto {
     @Size(min = 1, max = 1000)
     private String description;
     @NotNull
-    private Boolean freeSubscription;
+    private boolean freeSubscription;
     @NotNull
     @Min(1)
     @Max(12)

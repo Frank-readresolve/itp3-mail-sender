@@ -21,7 +21,7 @@ public class Customer extends AbstractEntity {
     private String contactEmail;
 
     @Column(name = "marketing_consent")
-    private Boolean marketingConsent;
+    private boolean marketingConsent;
 
     @Column(name = "customer_number")
     private Long customerNumber;

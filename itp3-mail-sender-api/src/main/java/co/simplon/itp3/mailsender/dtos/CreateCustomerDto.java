@@ -28,7 +28,7 @@ public class CreateCustomerDto {
     private String contactEmail;
 
     @NotNull
-    private Boolean marketingConsent;
+    private boolean marketingConsent;
 
     @NotBlank
     @Size(min = 1, max = 100)
