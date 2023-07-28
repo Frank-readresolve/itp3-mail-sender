@@ -17,9 +17,10 @@ CREATE TABLE customers (
     last_name VARCHAR(100) NOT NULL,
     contact_email VARCHAR(256) UNIQUE NOT NULL,
     marketing_consent BOOLEAN NOT NULL,
+    role_id INTEGER
     constraint pk_customer_id primary key(id),
     constraint fk_contact_role_id 
-			foreign key (id)
+			foreign key (role_id)
 			references contact_roles(id)
 );
 
