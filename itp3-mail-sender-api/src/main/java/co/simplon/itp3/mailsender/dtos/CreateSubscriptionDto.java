@@ -12,11 +12,12 @@ import co.simplon.itp3.mailsender.customValidations.UniqueSubscriptionName;
 public class CreateSubscriptionDto {
 
     @NotBlank
-    @Size(max = 100)
+    @Size(min = 1, max = 100)
     @UniqueSubscriptionName
     private String subscriptionName;
     @NotBlank
     @Pattern(regexp = "[a-zA-Z0-9\\s]+")
+    @Size(min = 1, max = 1000)
     private String description;
     @NotNull
     private Boolean freeSubscription;

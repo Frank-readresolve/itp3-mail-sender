@@ -6,20 +6,24 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-public class AnonymousEmail {
+public class SendEmailDto {
 
     @NotBlank
     @Email
     private String primaryRecipient;
 
+    @NotBlank
+    @Email
+    private String sender;
+
     @NotNull
     @Pattern(regexp = "[a-zA-Z0-9\\s]+")
-    @Size(max = 100)
+    @Size(min = 1, max = 100)
     private String subject;
 
     @NotNull
     @Pattern(regexp = "[a-zA-Z0-9\\s]+")
-    @Size(max = 1000)
+    @Size(min = 1, max = 1000)
     private String body;
 
     public String getPrimaryRecipient() {
@@ -29,6 +33,14 @@ public class AnonymousEmail {
     public void setPrimaryRecipient(
 	    String primaryRecipient) {
 	this.primaryRecipient = primaryRecipient;
+    }
+
+    public String getSender() {
+	return sender;
+    }
+
+    public void setSender(String sender) {
+	this.sender = sender;
     }
 
     public String getSubject() {
@@ -50,8 +62,8 @@ public class AnonymousEmail {
     @Override
     public String toString() {
 	return "{primaryRecipient=" + primaryRecipient
-		+ ", subject=" + subject + ", body=" + body
-		+ "}";
+		+ ", sender=" + sender + ", subject="
+		+ subject + ", body=" + body + "}";
     }
 
 }
