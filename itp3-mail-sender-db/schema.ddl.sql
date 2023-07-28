@@ -18,12 +18,13 @@ CREATE TABLE customers (
     last_name VARCHAR(100) NOT NULL,
     contact_email VARCHAR(256) NOT NULL,
     marketing_consent BOOLEAN NOT NULL,
+    from_reply_to VARCHAR(256) NOT NULL,
     role_id INTEGER NOT NULL,
     constraint pk_customer_id primary key(id),
     constraint fk_contact_role_id 
 			foreign key (role_id)
 			references contact_roles(id),
-	UNIQUE(customer_number, customer_name, contact_email)
+	UNIQUE(customer_number, customer_name, contact_email, from_reply_to)
 );
 
 CREATE TABLE subscriptions(
