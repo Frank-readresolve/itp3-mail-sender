@@ -12,18 +12,18 @@ import co.simplon.itp3.mailsender.customValidations.UniqueEmail;
 public class CreateCustomerDto {
 
     @NotBlank
-    @Size(max = 100)
+    @Size(min = 1, max = 100)
     @Pattern(regexp = "[a-zA-Z]+")
     private String firstName;
 
     @NotBlank
-    @Size(max = 100)
+    @Size(min = 1, max = 100)
     @Pattern(regexp = "[a-zA-Z]+")
     private String lastName;
 
     @Email
     @NotBlank
-    @Size(max = 256)
+    @Size(min = 1, max = 256)
     @UniqueEmail
     private String contactEmail;
 
@@ -31,7 +31,7 @@ public class CreateCustomerDto {
     private Boolean marketingConsent;
 
     @NotBlank
-    @Size(max = 100)
+    @Size(min = 1, max = 100)
     @Pattern(regexp = "[a-zA-Z_0-9]+")
     @UniqueCustomerName
     private String customerName;

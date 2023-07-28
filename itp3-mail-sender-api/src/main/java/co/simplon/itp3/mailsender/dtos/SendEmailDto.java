@@ -18,12 +18,12 @@ public class SendEmailDto {
 
     @NotNull
     @Pattern(regexp = "[a-zA-Z0-9\\s]+")
-    @Size(max = 100)
+    @Size(min = 1, max = 100)
     private String subject;
 
     @NotNull
     @Pattern(regexp = "[a-zA-Z0-9\\s]+")
-    @Size(max = 1000)
+    @Size(min = 1, max = 1000)
     private String body;
 
     public String getPrimaryRecipient() {
