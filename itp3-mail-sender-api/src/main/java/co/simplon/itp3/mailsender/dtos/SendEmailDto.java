@@ -2,7 +2,6 @@ package co.simplon.itp3.mailsender.dtos;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -16,12 +15,12 @@ public class SendEmailDto {
     @Email
     private String sender;
 
-    @NotNull
+    @NotBlank
     @Pattern(regexp = "[a-zA-Z0-9\\s]+")
     @Size(min = 1, max = 100)
     private String subject;
 
-    @NotNull
+    @NotBlank
     @Pattern(regexp = "[a-zA-Z0-9\\s]+")
     @Size(min = 1, max = 1000)
     private String body;
