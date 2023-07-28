@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS contact_roles;
 
 CREATE TABLE contact_roles (
     id SERIAL PRIMARY KEY,
-    contact_role VARCHAR(5) UNIQUE NOT NULL,
+    role_code VARCHAR(5) UNIQUE NOT NULL,
     contact_name VARCHAR(100) UNIQUE NOT NULL
 );
 

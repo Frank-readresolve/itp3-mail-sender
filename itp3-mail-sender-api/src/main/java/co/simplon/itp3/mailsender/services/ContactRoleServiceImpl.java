@@ -24,7 +24,7 @@ public class ContactRoleServiceImpl
     public void create(CreateContactRoleDto inputs) {
 	ContactRole contactRole = new ContactRole();
 	contactRole.setContactName(inputs.getContactName());
-	contactRole.setContactRole(inputs.getContactRole());
+	contactRole.setRoleCode(inputs.getContactRole());
 	this.contactRolesRepo.save(contactRole);
     }
 
