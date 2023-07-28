@@ -16,7 +16,7 @@ import co.simplon.itp3.mailsender.services.EmailService;
 @RequestMapping("/send-mail")
 public class MailController {
 
-    private EmailService service;
+    private final EmailService service;
 
     public MailController(EmailService service) {
 	this.service = service;

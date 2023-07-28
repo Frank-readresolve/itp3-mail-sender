@@ -16,7 +16,7 @@ import co.simplon.itp3.mailsender.services.SubscriptionService;
 @RequestMapping("/subscriptions")
 public class SubscriptionController {
 
-    private SubscriptionService service;
+    private final SubscriptionService service;
 
     public SubscriptionController(
 	    SubscriptionService service) {

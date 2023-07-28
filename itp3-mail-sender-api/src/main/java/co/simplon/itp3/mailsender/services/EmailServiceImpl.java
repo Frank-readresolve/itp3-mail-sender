@@ -9,7 +9,7 @@ import co.simplon.itp3.mailsender.dtos.SendEmailDto;
 @Service
 public class EmailServiceImpl implements EmailService {
 
-    private JavaMailSender javaMailSender;
+    private final JavaMailSender javaMailSender;
 
     public EmailServiceImpl(JavaMailSender javaMailSender) {
 	this.javaMailSender = javaMailSender;

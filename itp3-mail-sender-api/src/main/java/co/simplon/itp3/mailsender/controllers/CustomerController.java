@@ -16,7 +16,7 @@ import co.simplon.itp3.mailsender.services.CustomerService;
 @RequestMapping("/customers")
 public class CustomerController {
 
-    private CustomerService service;
+    private final CustomerService service;
 
     public CustomerController(CustomerService service) {
 	this.service = service;
