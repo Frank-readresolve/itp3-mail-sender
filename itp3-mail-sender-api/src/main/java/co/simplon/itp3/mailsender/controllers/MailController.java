@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.simplon.itp3.mailsender.dtos.AnonymousEmail;
+import co.simplon.itp3.mailsender.dtos.SendEmailDto;
 import co.simplon.itp3.mailsender.services.EmailService;
 
 @RestController
@@ -28,7 +28,7 @@ public class MailController {
     @PostMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void sendSimpleMail(
-	    @Valid @RequestBody AnonymousEmail inputs) {
+	    @Valid @RequestBody SendEmailDto inputs) {
 	this.service.sendSimpleMail(inputs);
     }
 

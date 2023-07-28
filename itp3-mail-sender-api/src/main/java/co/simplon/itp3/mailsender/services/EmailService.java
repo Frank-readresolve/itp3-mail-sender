@@ -1,8 +1,8 @@
 package co.simplon.itp3.mailsender.services;
 
-import co.simplon.itp3.mailsender.dtos.AnonymousEmail;
+import co.simplon.itp3.mailsender.dtos.SendEmailDto;
 
 public interface EmailService {
 
-    void sendSimpleMail(AnonymousEmail inputs);
+    void sendSimpleMail(SendEmailDto inputs);
 }
