@@ -6,9 +6,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import co.simplon.itp3.mailsender.customValidations.EmailValueDifferent;
 import co.simplon.itp3.mailsender.customValidations.UniqueCustomerName;
 import co.simplon.itp3.mailsender.customValidations.UniqueEmail;
 
+@EmailValueDifferent(field = "contactEmail", fieldMatch = "fromReplyTo")
 public class CreateCustomerDto {
 
     @NotBlank
