@@ -35,6 +35,11 @@ public class CreateCustomerDto {
     @UniqueCustomerName
     private String customerName;
 
+    @NotBlank
+    @Email
+    @Size(min = 1, max = 256)
+    private String fromReplyTo;
+
     @NotNull
     private Long roleId;
 
@@ -79,6 +84,14 @@ public class CreateCustomerDto {
 	this.customerName = customerName;
     }
 
+    public String getFromReplyTo() {
+	return fromReplyTo;
+    }
+
+    public void setFromReplyTo(String fromReplyTo) {
+	this.fromReplyTo = fromReplyTo;
+    }
+
     public Long getRoleId() {
 	return roleId;
     }
@@ -93,7 +106,8 @@ public class CreateCustomerDto {
 		+ lastName + ", contactEmail="
 		+ contactEmail + ", marketingConsent="
 		+ marketingConsent + ", customerName="
-		+ customerName + ", roleId=" + roleId + "}";
+		+ customerName + ", fromReplyTo="
+		+ fromReplyTo + ", roleId=" + roleId + "}";
     }
 
 }

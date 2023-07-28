@@ -28,6 +28,9 @@ public class Customer extends AbstractEntity {
     @Column(name = "customer_number")
     private Long customerNumber;
 
+    @Column(name = "from_reply_to")
+    private String fromReplyTo;
+
     @JoinColumn(name = "role_id")
     @ManyToOne
     private ContactRole contactRole;
@@ -64,12 +67,12 @@ public class Customer extends AbstractEntity {
 	this.contactEmail = contactEmail;
     }
 
-    public Boolean getMarketingConsent() {
+    public boolean isMarketingConsent() {
 	return marketingConsent;
     }
 
     public void setMarketingConsent(
-	    Boolean marketingConsent) {
+	    boolean marketingConsent) {
 	this.marketingConsent = marketingConsent;
     }
 
@@ -79,6 +82,14 @@ public class Customer extends AbstractEntity {
 
     public void setCustomerNumber(Long customerNumber) {
 	this.customerNumber = customerNumber;
+    }
+
+    public String getFromReplyTo() {
+	return fromReplyTo;
+    }
+
+    public void setFromReplyTo(String fromReplyTo) {
+	this.fromReplyTo = fromReplyTo;
     }
 
     public ContactRole getContactRole() {
@@ -96,7 +107,8 @@ public class Customer extends AbstractEntity {
 		+ customerName + ", contactEmail="
 		+ contactEmail + ", marketingConsent="
 		+ marketingConsent + ", customerNumber="
-		+ customerNumber + ", contactRole="
+		+ customerNumber + ", fromReplyTo="
+		+ fromReplyTo + ", contactRole="
 		+ contactRole + "}";
     }
 

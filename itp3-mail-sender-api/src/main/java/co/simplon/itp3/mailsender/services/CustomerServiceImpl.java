@@ -39,6 +39,7 @@ public class CustomerServiceImpl
 	customer.setCustomerNumber(countCustomerNumber);
 	ContactRole contactRole = contactRoles
 		.getReferenceById(inputs.getRoleId());
+	customer.setFromReplyTo(inputs.getFromReplyTo());
 	customer.setContactRole(contactRole);
 	this.customers.save(customer);
 
