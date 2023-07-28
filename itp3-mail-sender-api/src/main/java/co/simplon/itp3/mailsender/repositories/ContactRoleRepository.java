@@ -7,4 +7,8 @@ import co.simplon.itp3.mailsender.entities.ContactRole;
 public interface ContactRoleRepository
 	extends JpaRepository<ContactRole, Long> {
 
+    boolean existsByRoleCode(String string);
+
+    boolean existsByContactName(String string);
+
 }

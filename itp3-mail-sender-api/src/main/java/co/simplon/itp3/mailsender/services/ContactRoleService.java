@@ -6,4 +6,9 @@ public interface ContactRoleService {
 
     void create(CreateContactRoleDto inputs);
 
+    public boolean roleCodeValueExists(String roleCode);
+
+    public boolean contactNameValueExists(
+	    String contactName);
+
 }
