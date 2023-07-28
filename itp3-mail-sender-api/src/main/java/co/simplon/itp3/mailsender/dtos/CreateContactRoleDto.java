@@ -4,7 +4,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import co.simplon.itp3.mailsender.customValidations.UniqueContactName;
+import co.simplon.itp3.mailsender.customValidations.UniqueContactRoleName;
 import co.simplon.itp3.mailsender.customValidations.UniqueRoleCode;
 
 public class CreateContactRoleDto {
@@ -18,8 +18,8 @@ public class CreateContactRoleDto {
     @NotBlank
     @Size(min = 1, max = 100)
     @Pattern(regexp = "[a-zA-Z]+")
-    @UniqueContactName
-    private String contactName;
+    @UniqueContactRoleName
+    private String contactRoleName;
 
     public String getRoleCode() {
 	return roleCode;
@@ -29,18 +29,19 @@ public class CreateContactRoleDto {
 	this.roleCode = roleCode;
     }
 
-    public String getContactName() {
-	return contactName;
+    public String getContactRoleName() {
+	return contactRoleName;
     }
 
-    public void setContactName(String contactName) {
-	this.contactName = contactName;
+    public void setContactRoleName(String contactRoleName) {
+	this.contactRoleName = contactRoleName;
     }
 
     @Override
     public String toString() {
-	return "{roleCode=" + roleCode + ", contactName="
-		+ contactName + "}";
+	return "{roleCode=" + roleCode
+		+ ", contactRoleName=" + contactRoleName
+		+ "}";
     }
 
 }

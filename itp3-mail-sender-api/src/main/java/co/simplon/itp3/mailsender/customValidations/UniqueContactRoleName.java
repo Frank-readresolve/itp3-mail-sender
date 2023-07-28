@@ -12,9 +12,9 @@ import javax.validation.Payload;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 @Documented
-@Constraint(validatedBy = UniqueContactNameValidator.class)
-public @interface UniqueContactName {
-    String message() default "This contact name already exists";
+@Constraint(validatedBy = UniqueContactRoleNameValidator.class)
+public @interface UniqueContactRoleName {
+    String message() default "This contact role name already exists";
 
     Class<?>[] groups() default {};
 

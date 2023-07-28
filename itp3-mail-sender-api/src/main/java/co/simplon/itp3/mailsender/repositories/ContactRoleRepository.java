@@ -9,6 +9,6 @@ public interface ContactRoleRepository
 
     boolean existsByRoleCode(String string);
 
-    boolean existsByContactName(String string);
+    boolean existsByContactRoleName(String string);
 
 }

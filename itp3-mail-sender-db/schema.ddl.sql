@@ -5,9 +5,9 @@ DROP TABLE IF EXISTS contact_roles;
 CREATE TABLE contact_roles (
     id SERIAL,
     role_code VARCHAR(5) NOT NULL,
-    contact_name VARCHAR(100) NOT NULL,
+    contact_role_name VARCHAR(100) NOT NULL,
     constraint pk_contact_role_id primary key(id),
-    UNIQUE (role_code, contact_name)
+    UNIQUE (role_code, contact_role_name)
 );
 
 CREATE TABLE customers (
@@ -18,7 +18,7 @@ CREATE TABLE customers (
     last_name VARCHAR(100) NOT NULL,
     contact_email VARCHAR(256) NOT NULL,
     marketing_consent BOOLEAN NOT NULL,
-    role_id INTEGER
+    role_id INTEGER,
     constraint pk_customer_id primary key(id),
     constraint fk_contact_role_id 
 			foreign key (role_id)
