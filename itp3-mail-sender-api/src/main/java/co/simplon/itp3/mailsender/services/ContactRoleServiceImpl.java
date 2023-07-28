@@ -28,4 +28,19 @@ public class ContactRoleServiceImpl
 	this.contactRolesRepo.save(contactRole);
     }
 
+    @Override
+    public boolean roleCodeValueExists(String roleCode)
+	    throws UnsupportedOperationException {
+	return this.contactRolesRepo
+		.existsByRoleCode(roleCode.toString());
+    }
+
+    @Override
+    public boolean contactNameValueExists(
+	    String contactName)
+	    throws UnsupportedOperationException {
+	return this.contactRolesRepo.existsByContactName(
+		contactName.toString());
+    }
+
 }
