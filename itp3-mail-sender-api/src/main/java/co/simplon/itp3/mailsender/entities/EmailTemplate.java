@@ -10,8 +10,10 @@ public class EmailTemplate extends AbstractEntity {
 
     @Column(name = "template_identifier")
     private String templateIdentifier;
+
     @Column(name = "template_subject")
     private String templateSubject;
+
     @Column(name = "template_body")
     private String templateBody;
 
