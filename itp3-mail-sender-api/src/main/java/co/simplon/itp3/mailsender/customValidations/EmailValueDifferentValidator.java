@@ -3,28 +3,16 @@ package co.simplon.itp3.mailsender.customValidations;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import org.springframework.beans.BeanWrapperImpl;
+import co.simplon.itp3.mailsender.dtos.CreateCustomerDto;
 
 public class EmailValueDifferentValidator implements
-	ConstraintValidator<EmailValueDifferent, Object> {
-
-    private String field;
-    private String fieldMatch;
+	ConstraintValidator<EmailValueDifferent, CreateCustomerDto> {
 
     @Override
-    public void initialize(
-	    EmailValueDifferent constraintAnnotation) {
-	this.field = constraintAnnotation.field();
-	this.fieldMatch = constraintAnnotation.fieldMatch();
-    }
-
-    @Override
-    public boolean isValid(Object value,
+    public boolean isValid(CreateCustomerDto inputs,
 	    ConstraintValidatorContext context) {
-	Object fieldValue = new BeanWrapperImpl(value)
-		.getPropertyValue(field);
-	Object fieldMatchValue = new BeanWrapperImpl(value)
-		.getPropertyValue(fieldMatch);
+	String fieldValue = inputs.getContactEmail();
+	String fieldMatchValue = inputs.getFromReplyTo();
 
 	if (fieldValue != null) {
 	    return !fieldValue.equals(fieldMatchValue);
