@@ -1,20 +1,16 @@
-package co.simplon.itp3.mailsender.entities;
+package co.simplon.itp3.mailsender.dtos;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
-@Entity
-@Table(name = "email_templates")
-public class EmailTemplate extends AbstractEntity {
+public class EmailTemplateDto {
 
-    @Column(name = "template_identifier")
+    @NotBlank
     private String templateIdentifier;
 
-    @Column(name = "template_subject")
+    @NotBlank
     private String templateSubject;
 
-    @Column(name = "template_body")
+    @NotBlank
     private String templateBody;
 
     public String getTemplateIdentifier() {
