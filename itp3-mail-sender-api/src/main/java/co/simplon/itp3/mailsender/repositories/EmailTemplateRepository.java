@@ -9,4 +9,6 @@ public interface EmailTemplateRepository
 	extends JpaRepository<EmailTemplate, Long> {
 
     EmailTemplateDto findProjectedById(Long id);
+
+    boolean existsByTemplateIdentifier(String string);
 }

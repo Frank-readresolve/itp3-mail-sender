@@ -5,4 +5,7 @@ import co.simplon.itp3.mailsender.dtos.EmailTemplateDto;
 public interface EmailTemplateService {
 
     void update(Long id, EmailTemplateDto inputs);
+
+    boolean templateIdentifierExists(
+	    String templateIdentifier);
 }

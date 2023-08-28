@@ -2,9 +2,12 @@ package co.simplon.itp3.mailsender.dtos;
 
 import javax.validation.constraints.NotBlank;
 
+import co.simplon.itp3.mailsender.customValidations.UniqueTemplateIdentifier;
+
 public class EmailTemplateDto {
 
     @NotBlank
+    @UniqueTemplateIdentifier
     private String templateIdentifier;
 
     @NotBlank
