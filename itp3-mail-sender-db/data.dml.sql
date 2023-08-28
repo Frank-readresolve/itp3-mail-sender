@@ -9,5 +9,5 @@ INSERT INTO contact_roles
 INSERT INTO email_templates
 	(template_identifier, template_subject, template_body)
 	VALUES
-	('CUSTOMER', 'Welcome onboard ${cDear ${contact_firstname} \n\nYour API key is: ${api_key} \n\nEnjoy using our services!\nMailSenderAPI team\n\nThis is an automatic mail, please to not reply.ustomer_name}', ''),
+	('CUSTOMER', 'Welcome onboard ${customer_name}', 'Dear ${contact_firstname} \n\nYour API key is: ${api_key} \n\nEnjoy using our services!\nMailSenderAPI team\n\nThis is an automatic mail, please to not reply.'),
 	('FREE_MAIL', '[MailSenderAPI] - ${client_subject}', '${client_body} \n\n*****************************\n\nThis is a free limited and anonymous mail\nMailSenderAPI team\n\nThis is an automatic mail, please to not reply.');

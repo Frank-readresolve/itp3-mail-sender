@@ -22,17 +22,15 @@ public class EmailTemplateServiceImpl
     @Override
     @Transactional
     public void update(Long id, EmailTemplateDto inputs) {
-	// TODO Auto-generated method stub
+
 	EmailTemplate entity = emailTemplates.findById(id)
 		.get();
-	if (inputs.getId() != null) {
-	    entity.setId(inputs.getId());
-	    entity.setTemplateSubject(
-		    entity.getTemplateSubject());
-	    entity.setTemplateBody(
-		    entity.getTemplateBody());
-	    this.emailTemplates.save(entity);
-	}
-    }
 
+	entity.setTemplateIdentifier(
+		inputs.getTemplateIdentifier());
+	entity.setTemplateSubject(
+		inputs.getTemplateSubject());
+	entity.setTemplateBody(inputs.getTemplateBody());
+	this.emailTemplates.save(entity);
+    }
 }
