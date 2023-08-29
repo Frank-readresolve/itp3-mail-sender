@@ -21,6 +21,7 @@ CREATE TABLE customers (
     marketing_consent BOOLEAN NOT NULL,
     from_reply_to VARCHAR(256) NOT NULL,
     role_id INTEGER NOT NULL,
+    api_key VARCHAR(60) UNIQUE NOT NULL,
     constraint pk_customer_id primary key(id),
     constraint fk_contact_role_id 
 			foreign key (role_id)
