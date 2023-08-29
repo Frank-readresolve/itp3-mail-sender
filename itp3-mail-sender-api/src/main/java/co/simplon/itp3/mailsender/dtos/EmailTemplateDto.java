@@ -6,7 +6,6 @@ import co.simplon.itp3.mailsender.customValidations.UniqueTemplateIdentifier;
 
 public class EmailTemplateDto {
 
-    @NotBlank
     @UniqueTemplateIdentifier
     private String templateIdentifier;
 

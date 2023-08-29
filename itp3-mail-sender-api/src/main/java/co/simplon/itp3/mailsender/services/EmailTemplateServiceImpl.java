@@ -25,9 +25,11 @@ public class EmailTemplateServiceImpl
 
 	EmailTemplate entity = emailTemplates.findById(id)
 		.get();
+	if (inputs.getTemplateIdentifier() != null) {
+	    entity.setTemplateIdentifier(
+		    inputs.getTemplateIdentifier());
 
-	entity.setTemplateIdentifier(
-		inputs.getTemplateIdentifier());
+	}
 	entity.setTemplateSubject(
 		inputs.getTemplateSubject());
 	entity.setTemplateBody(inputs.getTemplateBody());
