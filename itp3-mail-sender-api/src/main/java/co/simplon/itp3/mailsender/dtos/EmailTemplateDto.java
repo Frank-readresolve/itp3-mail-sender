@@ -1,28 +1,17 @@
 package co.simplon.itp3.mailsender.dtos;
 
 import javax.validation.constraints.NotBlank;
-
-import co.simplon.itp3.mailsender.customValidations.UniqueTemplateIdentifier;
+import javax.validation.constraints.Size;
 
 public class EmailTemplateDto {
 
-    @UniqueTemplateIdentifier
-    private String templateIdentifier;
-
     @NotBlank
+    @Size(min = 1, max = 200)
     private String templateSubject;
 
     @NotBlank
+    @Size(min = 1, max = 10000)
     private String templateBody;
-
-    public String getTemplateIdentifier() {
-	return templateIdentifier;
-    }
-
-    public void setTemplateIdentifier(
-	    String templateIdentifier) {
-	this.templateIdentifier = templateIdentifier;
-    }
 
     public String getTemplateSubject() {
 	return templateSubject;
@@ -42,8 +31,7 @@ public class EmailTemplateDto {
 
     @Override
     public String toString() {
-	return "{templateIdentifier=" + templateIdentifier
-		+ ", templateSubject=" + templateSubject
+	return "{templateSubject=" + templateSubject
 		+ ", templateBody=" + templateBody + "}";
     }
 
