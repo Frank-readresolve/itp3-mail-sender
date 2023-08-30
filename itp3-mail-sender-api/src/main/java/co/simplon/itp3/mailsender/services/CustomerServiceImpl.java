@@ -80,14 +80,23 @@ public class CustomerServiceImpl
 	String subjectPart2 = inputs.getCustomerName();
 	String concatSubject = subjectPart1 + subjectPart2;
 
+	String emailBody = emailCustomer.getTemplateBody();
+	String[] bodyParts = emailBody.split("\\$\\{");
+	String bodyPart1 = bodyParts[0];
+	String[] bodyParts2 = bodyParts[1].split("\\}");
+	String bodyPart2 = inputs.getFirstName();
+	String bodyPart3 = bodyParts2[1];
+	String[] bodyParts3 = bodyParts[2].split("\\}");
+	String bodyPart4 = ApiKey;
+	String bodyPart5 = bodyParts3[1];
+	String concatBody = bodyPart1 + bodyPart2
+		+ bodyPart3 + bodyPart4 + bodyPart5;
+
 	try {
 	    SimpleMailMessage mailMessage = new SimpleMailMessage();
-	    mailMessage
-		    .setTo("juliette.madinier@gmail.com");
-	    mailMessage
-		    .setFrom("no-reply.dev@readresolve.io");
-	    mailMessage.setText(
-		    emailCustomer.getTemplateBody());
+	    mailMessage.setTo(inputs.getContactEmail());
+	    mailMessage.setFrom(inputs.getFromReplyTo());
+	    mailMessage.setText(concatBody);
 	    mailMessage.setSubject(concatSubject);
 	    this.javaMailSender.send(mailMessage);
 	} catch (Exception e) {
