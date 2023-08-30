@@ -72,7 +72,14 @@ public class CustomerServiceImpl
 	EmailTemplate emailCustomer = new EmailTemplate();
 	emailCustomer = this.emailTemplates
 		.getByTemplateIdentifier("CUSTOMER");
-	System.out.println(emailCustomer);
+	String emailSubject = emailCustomer
+		.getTemplateSubject();
+	String[] subjectParts = emailSubject
+		.split("\\$\\{");
+	String subjectPart1 = subjectParts[0];
+	String subjectPart2 = inputs.getCustomerName();
+	String concatSubject = subjectPart1 + subjectPart2;
+
 	try {
 	    SimpleMailMessage mailMessage = new SimpleMailMessage();
 	    mailMessage
@@ -81,8 +88,7 @@ public class CustomerServiceImpl
 		    .setFrom("no-reply.dev@readresolve.io");
 	    mailMessage.setText(
 		    emailCustomer.getTemplateBody());
-	    mailMessage.setSubject(
-		    emailCustomer.getTemplateIdentifier());
+	    mailMessage.setSubject(concatSubject);
 	    this.javaMailSender.send(mailMessage);
 	} catch (Exception e) {
 	    System.out.println(e);
