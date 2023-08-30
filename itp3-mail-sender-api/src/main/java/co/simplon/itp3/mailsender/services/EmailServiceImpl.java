@@ -1,7 +1,9 @@
 package co.simplon.itp3.mailsender.services;
 
+import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import co.simplon.itp3.mailsender.dtos.SendEmailDto;
@@ -15,21 +17,22 @@ public class EmailServiceImpl implements EmailService {
 	this.javaMailSender = javaMailSender;
     }
 
+    @Async
     @Override
     public void sendSimpleMail(SendEmailDto inputs) {
+
+	SimpleMailMessage mailMessage = new SimpleMailMessage();
+	mailMessage.setTo(inputs.getPrimaryRecipient());
+	mailMessage.setFrom(inputs.getSender());
+	mailMessage.setText(inputs.getBody());
+	mailMessage.setSubject(inputs.getSubject());
 	try {
-	    SimpleMailMessage mailMessage = new SimpleMailMessage();
-
-	    mailMessage.setTo(inputs.getPrimaryRecipient());
-	    mailMessage.setFrom(inputs.getSender());
-	    mailMessage.setText(inputs.getBody());
-	    mailMessage.setSubject(inputs.getSubject());
-
 	    this.javaMailSender.send(mailMessage);
 	    System.out.println(mailMessage);
 
-	} catch (Exception e) {
-	    System.out.println(e);
+	} catch (MailException e) {
+	    System.out.println("Error Sending Email: "
+		    + e.getMessage());
 	}
     }
 
