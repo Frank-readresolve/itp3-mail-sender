@@ -48,8 +48,7 @@ public class EmailServiceImpl implements EmailService {
 
     private final EmailTemplate applyFreeMailTemplate(
 	    SendEmailDto inputs) {
-	EmailTemplate freeMail = new EmailTemplate();
-	freeMail = this.emailTemplates
+	EmailTemplate freeMail = this.emailTemplates
 		.getByTemplateIdentifier("FREE_MAIL");
 	String emailSubject = freeMail.getTemplateSubject();
 	String replaceSubject = emailSubject.replace(
