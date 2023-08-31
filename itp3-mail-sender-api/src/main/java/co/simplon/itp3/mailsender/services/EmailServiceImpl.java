@@ -27,6 +27,7 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public void sendSimpleMail(SendEmailDto inputs) {
+	Boolean success = false;
 	try {
 	    SimpleMailMessage mailMessage = new SimpleMailMessage();
 
