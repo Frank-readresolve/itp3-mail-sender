@@ -38,6 +38,10 @@ public class Customer extends AbstractEntity {
     @ManyToOne
     private ContactRole contactRole;
 
+    @JoinColumn(name = "subscription_id")
+    @ManyToOne
+    private Subscription subscriptionId;
+
     public String getFirstName() {
 	return firstName;
     }
@@ -111,6 +115,15 @@ public class Customer extends AbstractEntity {
 	this.contactRole = contactRole;
     }
 
+    public Subscription getSubscriptionId() {
+	return subscriptionId;
+    }
+
+    public void setSubscriptionId(
+	    Subscription subscriptionId) {
+	this.subscriptionId = subscriptionId;
+    }
+
     @Override
     public String toString() {
 	return "{firstName=" + firstName + ", lastName="
@@ -120,6 +133,9 @@ public class Customer extends AbstractEntity {
 		+ marketingConsent + ", customerNumber="
 		+ customerNumber + ", fromReplyTo="
 		+ fromReplyTo + ", apiKey=" + apiKey
-		+ ", contactRole=" + contactRole + "}";
+		+ ", contactRole=" + contactRole
+		+ ", subscriptionId=" + subscriptionId
+		+ "}";
     }
+
 }
