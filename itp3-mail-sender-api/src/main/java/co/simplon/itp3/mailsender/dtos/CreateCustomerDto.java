@@ -48,6 +48,9 @@ public class CreateCustomerDto {
     @NotNull
     private Long subscriptionId;
 
+    public CreateCustomerDto() {
+    }
+
     public String getFirstName() {
 	return firstName;
     }

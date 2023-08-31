@@ -21,6 +21,9 @@ public class CreateContactRoleDto {
     @UniqueContactRoleName
     private String contactRoleName;
 
+    public CreateContactRoleDto() {
+    }
+
     public String getRoleCode() {
 	return roleCode;
     }

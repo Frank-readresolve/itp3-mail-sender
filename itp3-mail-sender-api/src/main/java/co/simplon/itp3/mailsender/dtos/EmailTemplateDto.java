@@ -13,6 +13,9 @@ public class EmailTemplateDto {
     @Size(min = 1, max = 10000)
     private String templateBody;
 
+    public EmailTemplateDto() {
+    }
+
     public String getTemplateSubject() {
 	return templateSubject;
     }

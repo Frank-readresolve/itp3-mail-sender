@@ -13,6 +13,9 @@ public class ContactRole extends AbstractEntity {
     @Column(name = "contact_role_name")
     private String contactRoleName;
 
+    public ContactRole() {
+    }
+
     public String getRoleCode() {
 	return roleCode;
     }

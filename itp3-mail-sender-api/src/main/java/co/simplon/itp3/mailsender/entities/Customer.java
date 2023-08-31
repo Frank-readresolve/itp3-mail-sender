@@ -42,6 +42,9 @@ public class Customer extends AbstractEntity {
     @ManyToOne
     private Subscription subscriptionId;
 
+    public Customer() {
+    }
+
     public String getFirstName() {
 	return firstName;
     }

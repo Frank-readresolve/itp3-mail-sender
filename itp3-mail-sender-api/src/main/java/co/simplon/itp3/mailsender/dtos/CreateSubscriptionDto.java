@@ -30,6 +30,9 @@ public class CreateSubscriptionDto {
     @Max(1000000)
     private int maxMailNum;
 
+    public CreateSubscriptionDto() {
+    }
+
     public String getSubscriptionName() {
 	return subscriptionName;
     }

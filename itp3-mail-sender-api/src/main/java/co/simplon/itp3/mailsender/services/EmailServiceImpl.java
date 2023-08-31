@@ -37,6 +37,7 @@ public class EmailServiceImpl implements EmailService {
 		.setSubject(freeMail.getTemplateSubject());
 	try {
 	    this.javaMailSender.send(mailMessage);
+	    System.out.println(mailMessage.toString());
 
 	} catch (MailException e) {
 	    System.out.println("Error Sending Email: "

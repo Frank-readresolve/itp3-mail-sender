@@ -26,6 +26,9 @@ public class Subscription extends AbstractEntity {
     @Column(name = "max_mail_num")
     private int maxMailNum;
 
+    public Subscription() {
+    }
+
     public String getSubscriptionCode() {
 	return subscriptionCode;
     }

@@ -25,6 +25,9 @@ public class SendEmailDto {
     @Size(min = 1, max = 1000)
     private String body;
 
+    public SendEmailDto() {
+    }
+
     public String getPrimaryRecipient() {
 	return primaryRecipient;
     }
