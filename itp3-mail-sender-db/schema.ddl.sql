@@ -47,6 +47,27 @@ CREATE TABLE email_templates(
 	template_body VARCHAR(10000) NOT NULL
 );
 
+CREATE TABLE mail_trackers (
+	id SERIAL,
+	date_time TIMESTAMP NOT NULL,
+	subject_length SMALLINT NOT NULL,
+	body_length SMALLINT NOT NULL,
+	success BOOLEAN NOT NULL,
+	message VARCHAR(255)
+	CONSTRAINT pk_mail_tracker_id PRIMARY KEY(id)
+);
+
+CREATE TABLE headers (
+	id SERIAL,
+	name VARCHAR(255) NOT NULL,
+	value_header TEXT NOT NULL,
+	mail_tracker_id SERIAL NOT NULL,
+	CONSTRAINT pk_header_id PRIMARY KEY(id),
+    CONSTRAINT fk_mail_tracker_id 
+		FOREIGN KEY (mail_tracker_id)
+		REFERENCES mail_trackers(id)
+)
+
 CREATE SEQUENCE IF NOT EXISTS subscriptions_subscription_code_seq
     START WITH 1
     OWNED BY subscriptions.subscription_code;
