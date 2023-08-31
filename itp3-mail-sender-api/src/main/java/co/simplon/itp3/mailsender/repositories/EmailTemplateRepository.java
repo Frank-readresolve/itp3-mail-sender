@@ -10,5 +10,5 @@ public interface EmailTemplateRepository
 
     EmailTemplateDto findProjectedById(Long id);
 
-    boolean existsByTemplateIdentifier(String string);
+    EmailTemplate getByTemplateIdentifier(String string);
 }

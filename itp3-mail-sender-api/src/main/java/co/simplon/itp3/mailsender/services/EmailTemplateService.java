@@ -6,6 +6,4 @@ public interface EmailTemplateService {
 
     void update(Long id, EmailTemplateDto inputs);
 
-    boolean templateIdentifierExists(
-	    String templateIdentifier);
 }

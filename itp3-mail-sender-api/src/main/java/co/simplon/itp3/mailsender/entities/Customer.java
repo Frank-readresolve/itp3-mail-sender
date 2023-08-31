@@ -31,6 +31,9 @@ public class Customer extends AbstractEntity {
     @Column(name = "from_reply_to")
     private String fromReplyTo;
 
+    @Column(name = "api_key")
+    private String apiKey;
+
     @JoinColumn(name = "role_id")
     @ManyToOne
     private ContactRole contactRole;
@@ -92,6 +95,14 @@ public class Customer extends AbstractEntity {
 	this.fromReplyTo = fromReplyTo;
     }
 
+    public String getApiKey() {
+	return apiKey;
+    }
+
+    public void setApiKey(String apiKey) {
+	this.apiKey = apiKey;
+    }
+
     public ContactRole getContactRole() {
 	return contactRole;
     }
@@ -108,8 +119,7 @@ public class Customer extends AbstractEntity {
 		+ contactEmail + ", marketingConsent="
 		+ marketingConsent + ", customerNumber="
 		+ customerNumber + ", fromReplyTo="
-		+ fromReplyTo + ", contactRole="
-		+ contactRole + "}";
+		+ fromReplyTo + ", apiKey=" + apiKey
+		+ ", contactRole=" + contactRole + "}";
     }
-
 }

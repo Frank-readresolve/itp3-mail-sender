@@ -32,12 +32,4 @@ public class EmailTemplateServiceImpl
 	this.emailTemplates.save(entity);
     }
 
-    @Override
-    public boolean templateIdentifierExists(
-	    String templateIdentifier)
-	    throws UnsupportedOperationException {
-	return this.emailTemplates
-		.existsByTemplateIdentifier(
-			templateIdentifier.toString());
-    }
 }
