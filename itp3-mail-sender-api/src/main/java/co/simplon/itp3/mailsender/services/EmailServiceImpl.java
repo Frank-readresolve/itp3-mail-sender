@@ -1,5 +1,6 @@
 package co.simplon.itp3.mailsender.services;
 
+import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
@@ -34,10 +35,17 @@ public class EmailServiceImpl implements EmailService {
 	mailMessage.setText(freeMail.getTemplateBody());
 	mailMessage
 		.setSubject(freeMail.getTemplateSubject());
+	try {
+	    this.javaMailSender.send(mailMessage);
+
+	} catch (MailException e) {
+	    System.out.println("Error Sending Email: "
+		    + e.getMessage());
+	}
 
     }
 
-    public EmailTemplate applyFreeMailTemplate(
+    private final EmailTemplate applyFreeMailTemplate(
 	    SendEmailDto inputs) {
 	EmailTemplate freeMail = new EmailTemplate();
 	freeMail = this.emailTemplates
@@ -48,7 +56,8 @@ public class EmailServiceImpl implements EmailService {
 	String emailbody = freeMail.getTemplateBody();
 	String replaceBody = emailbody.replace(
 		"${client_body}", inputs.getBody());
-
+	freeMail.setTemplateSubject(replaceSubject);
+	freeMail.setTemplateBody(replaceBody);
 	return freeMail;
     }
 
