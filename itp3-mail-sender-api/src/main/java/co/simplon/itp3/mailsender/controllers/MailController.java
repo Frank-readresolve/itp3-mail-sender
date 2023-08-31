@@ -1,5 +1,6 @@
 package co.simplon.itp3.mailsender.controllers;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
@@ -24,8 +25,9 @@ public class MailController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void sendSimpleMail(
+    public void sendSimpleMail(HttpServletRequest request,
 	    @Valid @RequestBody SendEmailDto inputs) {
+	this.service.getHeaders(request);
 	this.service.sendSimpleMail(inputs);
     }
 
