@@ -2,6 +2,8 @@ DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS subscriptions;
 DROP TABLE IF EXISTS contact_roles;
 DROP TABLE IF EXISTS email_templates;
+DROP TABLE IF EXISTS headers;
+DROP TABLE IF EXISTS mail_trackers;
 
 CREATE TABLE contact_roles (
     id SERIAL,
@@ -53,20 +55,20 @@ CREATE TABLE mail_trackers (
 	subject_length SMALLINT NOT NULL,
 	body_length SMALLINT NOT NULL,
 	success BOOLEAN NOT NULL,
-	message VARCHAR(255)
-	CONSTRAINT pk_mail_tracker_id PRIMARY KEY(id)
+	message VARCHAR(255),
+	constraint pk_mail_tracker_id primary key(id)
 );
 
 CREATE TABLE headers (
 	id SERIAL,
 	name VARCHAR(255) NOT NULL,
 	value_header TEXT NOT NULL,
-	mail_tracker_id SERIAL NOT NULL,
+	mail_tracker_id SERIAL,
 	CONSTRAINT pk_header_id PRIMARY KEY(id),
     CONSTRAINT fk_mail_tracker_id 
 		FOREIGN KEY (mail_tracker_id)
 		REFERENCES mail_trackers(id)
-)
+);
 
 CREATE SEQUENCE IF NOT EXISTS subscriptions_subscription_code_seq
     START WITH 1
