@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS subscriptions;
 DROP TABLE IF EXISTS contact_roles;
+DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS email_templates;
 
 CREATE TABLE contact_roles (
@@ -9,6 +9,18 @@ CREATE TABLE contact_roles (
     contact_role_name VARCHAR(100) NOT NULL,
     constraint pk_contact_role_id primary key(id),
     UNIQUE (role_code, contact_role_name)
+);
+
+CREATE TABLE subscriptions (
+	id SERIAL,
+	subscription_name VARCHAR(100) NOT NULL,
+	subscription_code VARCHAR(10) NOT NULL,
+	description VARCHAR(1000) NOT NULL,
+	free_subscription BOOLEAN NOT NULL,
+	duration_in_months SMALLINT NOT NULL,
+	max_mail_num INTEGER NOT null,
+	constraint pk_subscription_id primary key(id),
+	UNIQUE(subscription_name, subscription_code)
 );
 
 CREATE TABLE customers (
@@ -21,24 +33,16 @@ CREATE TABLE customers (
     marketing_consent BOOLEAN NOT NULL,
     from_reply_to VARCHAR(256) NOT NULL,
     role_id INTEGER NOT NULL,
+    subscription_id INTEGER NOT NULL,
     api_key VARCHAR(60) UNIQUE NOT NULL,
     constraint pk_customer_id primary key(id),
     constraint fk_contact_role_id 
 			foreign key (role_id)
 			references contact_roles(id),
+	constraint fk_subscription_id
+			foreign key (subscription_id)
+			references subscriptions(id),
 	UNIQUE(customer_number, customer_name, contact_email, from_reply_to)
-);
-
-CREATE TABLE subscriptions(
-	id SERIAL,
-	subscription_name VARCHAR(100) NOT NULL,
-	subscription_code VARCHAR(10) NOT NULL,
-	description VARCHAR(1000) NOT NULL,
-	free_subscription BOOLEAN NOT NULL,
-	duration_in_months SMALLINT NOT NULL,
-	max_mail_num INTEGER NOT null,
-	constraint pk_subscription_id primary key(id),
-	UNIQUE(subscription_name, subscription_code)
 );
 
 CREATE TABLE email_templates(
