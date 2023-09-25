@@ -4,10 +4,11 @@ import java.util.UUID;
 
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import co.simplon.itp3.mailsender.config.ApiHelper;
 import co.simplon.itp3.mailsender.dtos.CreateCustomerDto;
 import co.simplon.itp3.mailsender.entities.ContactRole;
 import co.simplon.itp3.mailsender.entities.Customer;
@@ -29,7 +30,7 @@ public class CustomerServiceImpl
 
     private final SubscriptionRepository subscriptions;
 
-    private final ApiHelper apiHelper;
+    private final PasswordEncoder encoder = new BCryptPasswordEncoder();
 
     private final EmailTemplateRepository emailTemplates;
     private final JavaMailSender javaMailSender;
@@ -37,13 +38,11 @@ public class CustomerServiceImpl
     public CustomerServiceImpl(CustomerRepository customers,
 	    ContactRoleRepository contactRoles,
 	    SubscriptionRepository subscriptions,
-	    ApiHelper apiHelper,
 	    EmailTemplateRepository emailTemplates,
 	    JavaMailSender javaMailSender) {
 	this.customers = customers;
 	this.contactRoles = contactRoles;
 	this.subscriptions = subscriptions;
-	this.apiHelper = apiHelper;
 	this.emailTemplates = emailTemplates;
 	this.javaMailSender = javaMailSender;
     }
@@ -70,8 +69,8 @@ public class CustomerServiceImpl
 	customer.setFromReplyTo(inputs.getFromReplyTo());
 	customer.setContactRole(contactRole);
 	String apiKey = UUID.randomUUID().toString();
-	String hash = apiHelper.encode(apiKey);
-	customer.setApiKey(hash);
+	String apiKeyEncoded = encoder.encode(apiKey);
+	customer.setApiKey(apiKeyEncoded);
 	sendApiKeyEmail(inputs, apiKey);
 	this.customers.save(customer);
 
