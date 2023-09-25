@@ -78,35 +78,28 @@ public class CustomerServiceImpl
 
     public void sendApiKeyEmail(CreateCustomerDto inputs,
 	    String ApiKey) {
-	EmailTemplate emailCustomer = new EmailTemplate();
-	emailCustomer = this.emailTemplates
+	EmailTemplate emailCustomerTemplate = new EmailTemplate();
+	emailCustomerTemplate = this.emailTemplates
 		.getByTemplateIdentifier("CUSTOMER");
-	String emailSubject = emailCustomer
+	String emailSubject = emailCustomerTemplate
 		.getTemplateSubject();
-	String[] subjectParts = emailSubject
-		.split("\\$\\{");
-	String subjectPart1 = subjectParts[0];
-	String subjectPart2 = inputs.getCustomerName();
-	String concatSubject = subjectPart1 + subjectPart2;
+	String replaceSubject = emailSubject.replace(
+		"${client_subject}",
+		inputs.getCustomerName());
 
-	String emailBody = emailCustomer.getTemplateBody();
-	String[] bodyParts = emailBody.split("\\$\\{");
-	String bodyPart1 = bodyParts[0];
-	String[] bodyParts2 = bodyParts[1].split("\\}");
-	String bodyPart2 = inputs.getFirstName();
-	String bodyPart3 = bodyParts2[1];
-	String[] bodyParts3 = bodyParts[2].split("\\}");
-	String bodyPart4 = ApiKey;
-	String bodyPart5 = bodyParts3[1];
-	String concatBody = bodyPart1 + bodyPart2
-		+ bodyPart3 + bodyPart4 + bodyPart5;
+	String emailBody = emailCustomerTemplate
+		.getTemplateBody();
+	String replaceBody = emailBody
+		.replace("${contact_firstname}",
+			inputs.getFirstName())
+		.replace("${api_key}", ApiKey);
 
 	try {
 	    SimpleMailMessage mailMessage = new SimpleMailMessage();
 	    mailMessage.setTo(inputs.getContactEmail());
 	    mailMessage.setFrom(inputs.getFromReplyTo());
-	    mailMessage.setText(concatBody);
-	    mailMessage.setSubject(concatSubject);
+	    mailMessage.setText(replaceBody);
+	    mailMessage.setSubject(replaceSubject);
 	    this.javaMailSender.send(mailMessage);
 	} catch (Exception e) {
 	    System.out.println(e);
