@@ -52,7 +52,7 @@ public class EmailServiceImpl implements EmailService {
 	}
     }
 
-    public void sendMailTracker(SendEmailDto inputs) {
+    public void sendMailTracker(SendEmailDto inputs, ) {
 	MailTracker mailTracker = new MailTracker(success,
 		errorMessage);
 	mailTracker
