@@ -8,5 +8,5 @@ public interface EmailService {
 
     void sendSimpleMail(SendEmailDto inputs);
 
-    void getHeaders(HttpServletRequest request);
+    void sendHeaders(HttpServletRequest request);
 }

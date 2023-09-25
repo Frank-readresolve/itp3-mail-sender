@@ -14,10 +14,10 @@ public class MailTracker extends AbstractEntity {
     private LocalDateTime dateTime;
 
     @Column(name = "body_length")
-    private Short bodyLength;
+    private int bodyLength;
 
     @Column(name = "subject_length")
-    private Short subjectLength;
+    private int subjectLength;
 
     @Column(name = "success")
     private Boolean success;
@@ -33,19 +33,19 @@ public class MailTracker extends AbstractEntity {
 	this.dateTime = dateTime;
     }
 
-    public Short getBodyLength() {
+    public int getBodyLength() {
 	return bodyLength;
     }
 
-    public void setBodyLength(Short bodyLength) {
+    public void setBodyLength(int bodyLength) {
 	this.bodyLength = bodyLength;
     }
 
-    public Short getSubjectLength() {
+    public int getSubjectLength() {
 	return subjectLength;
     }
 
-    public void setSubjectLength(Short subjectLength) {
+    public void setSubjectLength(int subjectLength) {
 	this.subjectLength = subjectLength;
     }
 
@@ -72,4 +72,5 @@ public class MailTracker extends AbstractEntity {
 		+ subjectLength + ", success=" + success
 		+ ", message=" + message + "}";
     }
+
 }

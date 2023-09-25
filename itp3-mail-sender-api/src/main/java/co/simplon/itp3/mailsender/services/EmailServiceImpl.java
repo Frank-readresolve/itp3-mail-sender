@@ -1,5 +1,6 @@
 package co.simplon.itp3.mailsender.services;
 
+import java.time.LocalDateTime;
 import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +11,9 @@ import org.springframework.stereotype.Service;
 
 import co.simplon.itp3.mailsender.dtos.SendEmailDto;
 import co.simplon.itp3.mailsender.entities.Header;
+import co.simplon.itp3.mailsender.entities.MailTracker;
 import co.simplon.itp3.mailsender.repositories.HeaderRepository;
+import co.simplon.itp3.mailsender.repositories.MailTrackerRepository;
 
 @Service
 public class EmailServiceImpl implements EmailService {
@@ -19,15 +22,20 @@ public class EmailServiceImpl implements EmailService {
 
     private HeaderRepository headers;
 
+    private MailTrackerRepository mailTracker;
+
     public EmailServiceImpl(JavaMailSender javaMailSender,
-	    HeaderRepository headers) {
+	    HeaderRepository headers,
+	    MailTrackerRepository mailTracker) {
 	this.javaMailSender = javaMailSender;
 	this.headers = headers;
+	this.mailTracker = mailTracker;
     }
 
     @Override
     public void sendSimpleMail(SendEmailDto inputs) {
 	Boolean success = false;
+	String errorMessage = null;
 	try {
 	    SimpleMailMessage mailMessage = new SimpleMailMessage();
 
@@ -36,6 +44,7 @@ public class EmailServiceImpl implements EmailService {
 	    mailMessage.setText(inputs.getBody());
 	    mailMessage.setSubject(inputs.getSubject());
 	    this.javaMailSender.send(mailMessage);
+	    sendMailTracker(inputs, success, errorMessage);
 	    System.out.println(mailMessage);
 
 	} catch (Exception e) {
@@ -43,8 +52,20 @@ public class EmailServiceImpl implements EmailService {
 	}
     }
 
+    public void sendMailTracker(SendEmailDto inputs) {
+	MailTracker mailTracker = new MailTracker(success,
+		errorMessage);
+	mailTracker
+		.setBodyLength(inputs.getBody().length());
+	mailTracker.setSubjectLength(
+		inputs.getSubject().length());
+	LocalDateTime dateTime = LocalDateTime.now();
+	mailTracker.setDateTime(dateTime);
+
+    }
+
     @Override
-    public void getHeaders(HttpServletRequest request) {
+    public void sendHeaders(HttpServletRequest request) {
 
 	Enumeration<String> headerNames = request
 		.getHeaderNames();
