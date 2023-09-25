@@ -9,6 +9,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import co.simplon.itp3.mailsender.dtos.EmailStatsDto;
 import co.simplon.itp3.mailsender.dtos.SendEmailDto;
 import co.simplon.itp3.mailsender.entities.Header;
 import co.simplon.itp3.mailsender.entities.MailTracker;
@@ -71,9 +72,7 @@ public class EmailServiceImpl implements EmailService {
 	    header.setValue(headerValue);
 	    header.setMailTracker(mailTracker);
 	    this.headers.save(header);
-
 	}
-
     }
 
     public void sendMailTracker(SendEmailDto inputs,
@@ -90,5 +89,23 @@ public class EmailServiceImpl implements EmailService {
 	mailTracker.setMessage(errorMessage);
 	this.mailTracker.save(mailTracker);
 	this.sendHeaders(request, mailTracker);
+    }
+
+    @Override
+    public EmailStatsDto emailsStat() {
+	EmailStatsDto stats = new EmailStatsDto();
+	long allSentmail = this.mailTracker
+		.countAllEmailSent();
+	long successSentMail = this.mailTracker
+		.countSuccessfullySentMail();
+	stats.setSentEmails(allSentmail);
+	stats.setSuccessfullySentEmails(successSentMail);
+	stats.setUnssuccessfullySentEmails(
+		allSentmail - successSentMail);
+	stats.setMaxLengthBody(
+		this.mailTracker.maxBodylength());
+	stats.setMaxLengthSubject(
+		this.mailTracker.maxSubjectlength());
+	return stats;
     }
 }

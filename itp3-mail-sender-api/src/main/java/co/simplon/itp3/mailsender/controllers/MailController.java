@@ -4,12 +4,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.simplon.itp3.mailsender.dtos.EmailStatsDto;
 import co.simplon.itp3.mailsender.dtos.SendEmailDto;
 import co.simplon.itp3.mailsender.services.EmailService;
 
@@ -28,6 +30,12 @@ public class MailController {
     public void sendSimpleMail(HttpServletRequest request,
 	    @Valid @RequestBody SendEmailDto inputs) {
 	this.service.sendSimpleMail(inputs, request);
+    }
+
+    @GetMapping
+    public EmailStatsDto emailsStat() {
+	EmailStatsDto stats = service.emailsStat();
+	return stats;
     }
 
 }
