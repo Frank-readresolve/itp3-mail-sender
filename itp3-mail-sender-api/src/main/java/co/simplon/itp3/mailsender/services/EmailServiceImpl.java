@@ -33,7 +33,8 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public void sendSimpleMail(SendEmailDto inputs) {
+    public void sendSimpleMail(SendEmailDto inputs,
+	    HttpServletRequest request) {
 	Boolean success = false;
 	String errorMessage = null;
 	try {
@@ -44,28 +45,20 @@ public class EmailServiceImpl implements EmailService {
 	    mailMessage.setText(inputs.getBody());
 	    mailMessage.setSubject(inputs.getSubject());
 	    this.javaMailSender.send(mailMessage);
-	    sendMailTracker(inputs, success, errorMessage);
-	    System.out.println(mailMessage);
+	    success = true;
+	    sendMailTracker(inputs, success, errorMessage,
+		    request);
 
 	} catch (Exception e) {
 	    System.out.println(e);
+	    errorMessage = e.toString();
+	    sendMailTracker(inputs, success, errorMessage,
+		    request);
 	}
     }
 
-    public void sendMailTracker(SendEmailDto inputs, ) {
-	MailTracker mailTracker = new MailTracker(success,
-		errorMessage);
-	mailTracker
-		.setBodyLength(inputs.getBody().length());
-	mailTracker.setSubjectLength(
-		inputs.getSubject().length());
-	LocalDateTime dateTime = LocalDateTime.now();
-	mailTracker.setDateTime(dateTime);
-
-    }
-
-    @Override
-    public void sendHeaders(HttpServletRequest request) {
+    public void sendHeaders(HttpServletRequest request,
+	    MailTracker mailTracker) {
 
 	Enumeration<String> headerNames = request
 		.getHeaderNames();
@@ -76,10 +69,26 @@ public class EmailServiceImpl implements EmailService {
 		    .getHeader(headerName);
 	    header.setName(headerName);
 	    header.setValue(headerValue);
-
+	    header.setMailTracker(mailTracker);
 	    this.headers.save(header);
 
 	}
 
+    }
+
+    public void sendMailTracker(SendEmailDto inputs,
+	    Boolean success, String errorMessage,
+	    HttpServletRequest request) {
+	MailTracker mailTracker = new MailTracker();
+	mailTracker
+		.setBodyLength(inputs.getBody().length());
+	mailTracker.setSubjectLength(
+		inputs.getSubject().length());
+	LocalDateTime dateTime = LocalDateTime.now();
+	mailTracker.setDateTime(dateTime);
+	mailTracker.setSuccess(success);
+	mailTracker.setMessage(errorMessage);
+	this.mailTracker.save(mailTracker);
+	this.sendHeaders(request, mailTracker);
     }
 }

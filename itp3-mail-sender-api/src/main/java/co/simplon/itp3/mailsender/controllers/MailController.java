@@ -27,8 +27,7 @@ public class MailController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void sendSimpleMail(HttpServletRequest request,
 	    @Valid @RequestBody SendEmailDto inputs) {
-	this.service.sendHeaders(request);
-	this.service.sendSimpleMail(inputs);
+	this.service.sendSimpleMail(inputs, request);
     }
 
 }

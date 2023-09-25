@@ -6,7 +6,7 @@ import co.simplon.itp3.mailsender.dtos.SendEmailDto;
 
 public interface EmailService {
 
-    void sendSimpleMail(SendEmailDto inputs);
+    void sendSimpleMail(SendEmailDto inputs,
+	    HttpServletRequest request);
 
-    void sendHeaders(HttpServletRequest request);
 }
