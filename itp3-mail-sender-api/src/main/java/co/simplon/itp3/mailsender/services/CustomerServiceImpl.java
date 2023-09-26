@@ -1,5 +1,6 @@
 package co.simplon.itp3.mailsender.services;
 
+import java.util.Collection;
 import java.util.UUID;
 
 import org.springframework.mail.SimpleMailMessage;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import co.simplon.itp3.mailsender.config.ApiHelper;
 import co.simplon.itp3.mailsender.dtos.CreateCustomerDto;
+import co.simplon.itp3.mailsender.dtos.CustomersList;
 import co.simplon.itp3.mailsender.entities.ContactRole;
 import co.simplon.itp3.mailsender.entities.Customer;
 import co.simplon.itp3.mailsender.entities.EmailTemplate;
@@ -130,4 +132,8 @@ public class CustomerServiceImpl
 		customerName.toString());
     }
 
+    @Override
+    public Collection<CustomersList> getAll() {
+	return this.customers.getCustomerItems();
+    }
 }
