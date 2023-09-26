@@ -19,7 +19,7 @@ public interface CustomerRepository
     public int getNextValMySequence();
 
     @Query(value = "SELECT c.id AS id, c.customerNumber AS number, c.customerName AS name, c.contactEmail AS email, cr.contactRoleName AS roleName, s.subscriptionName AS subscriptionName "
-	    + "FROM Customer c JOIN c.contactRole cr JOIN c.subscriptionId s")
+	    + "FROM Customer c JOIN c.contactRole cr JOIN c.subscriptionId s ORDER BY c.customerName")
     Collection<CustomersList> getCustomerItems();
 
 }
