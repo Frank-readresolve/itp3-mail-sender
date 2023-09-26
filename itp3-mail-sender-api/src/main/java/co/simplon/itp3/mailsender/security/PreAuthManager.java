@@ -3,9 +3,11 @@ package co.simplon.itp3.mailsender.security;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.stereotype.Component;
 
 import co.simplon.itp3.mailsender.services.CustomerService;
 
+@Component
 public class PreAuthManager
 	implements AuthenticationManager {
 

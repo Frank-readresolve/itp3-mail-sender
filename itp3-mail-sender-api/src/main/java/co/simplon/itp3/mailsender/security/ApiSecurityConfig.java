@@ -9,6 +9,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.context.SecurityContextHolderFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -29,17 +31,21 @@ public class ApiSecurityConfig {
     }
 
     @Bean
-    protected void fitChain(HttpSecurity http)
-	    throws Exception {
+    protected SecurityFilterChain filterChain(
+	    HttpSecurity http) throws Exception {
 	http.csrf().disable().anonymous().disable()
 		.sessionManagement()
 		.sessionCreationPolicy(
 			SessionCreationPolicy.STATELESS)
-		.and().addFilter(preAuthExceptionFilter())
-		.addFilter(preAuthFilter())
+		.and()
+		.addFilterBefore(preAuthExceptionFilter(),
+			SecurityContextHolderFilter.class)
+		.addFilterAfter(preAuthFilter(),
+			SecurityContextHolderFilter.class)
 		.authorizeRequests()
 		.antMatchers(HttpMethod.POST, "/send-mail")
 		.fullyAuthenticated();
+	return http.build();
     }
 
     @Bean
