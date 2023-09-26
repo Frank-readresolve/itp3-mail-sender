@@ -14,10 +14,10 @@ public class SendAuthEmailDto {
     private String[] primaryRecipient;
 
     @Email
-    private String CcRecipient;
+    private String cc;
 
     @Email
-    private String BccRecipient;
+    private String bcc;
 
     @NotBlank
     @Email
@@ -48,20 +48,20 @@ public class SendAuthEmailDto {
 	this.primaryRecipient = primaryRecipient;
     }
 
-    public String getCcRecipient() {
-	return CcRecipient;
+    public String getCc() {
+	return cc;
     }
 
-    public void setCcRecipient(String ccRecipient) {
-	CcRecipient = ccRecipient;
+    public void setCc(String cc) {
+	this.cc = cc;
     }
 
-    public String getBccRecipient() {
-	return BccRecipient;
+    public String getBcc() {
+	return bcc;
     }
 
-    public void setBccRecipient(String bccRecipient) {
-	BccRecipient = bccRecipient;
+    public void setBcc(String bcc) {
+	this.bcc = bcc;
     }
 
     public String getSender() {
@@ -100,8 +100,7 @@ public class SendAuthEmailDto {
     public String toString() {
 	return "{primaryRecipient="
 		+ Arrays.toString(primaryRecipient)
-		+ ", CcRecipient=" + CcRecipient
-		+ ", BccRecipient=" + BccRecipient
+		+ ", cc=" + cc + ", bcc=" + bcc
 		+ ", sender=" + sender + ", subject="
 		+ subject + ", body=" + body + ", filePath="
 		+ filePath + "}";

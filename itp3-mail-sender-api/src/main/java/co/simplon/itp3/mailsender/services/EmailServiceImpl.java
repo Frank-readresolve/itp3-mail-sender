@@ -78,11 +78,11 @@ public class EmailServiceImpl implements EmailService {
 	helper.setReplyTo(inputs.getSender());
 	helper.setSubject(inputs.getSubject());
 	helper.setTo(inputs.getPrimaryRecipient());
-	if (inputs.getCcRecipient() != null) {
-	    helper.setTo(inputs.getCcRecipient());
+	if (inputs.getCc() != null) {
+	    helper.setCc(inputs.getCc());
 	}
-	if (inputs.getBccRecipient() != null) {
-	    helper.setBcc(inputs.getBccRecipient());
+	if (inputs.getBcc() != null) {
+	    helper.setBcc(inputs.getBcc());
 	}
 	helper.setText(inputs.getBody(), true);
 	if (inputs.getFilePath() != null) {
