@@ -128,11 +128,12 @@ public class CustomerServiceImpl
     public void authenticate(String customerNumber,
 	    String rawKey) throws BadCredentialsException {
 	CustomerView client = customers
-		.findByCustomerNumber(customerNumber)
+		.findByCustomerNumber(
+			Long.valueOf(customerNumber))
 		.orElseThrow(
 			() -> new BadCredentialsException(
 				String.format(
-					"Customer not found with customer number '%s'",
+					"Customer not found with customer name '%s'",
 					customerNumber)));
 	if (!encoder.matches(rawKey, client.getApiKey())) {
 	    throw new BadCredentialsException(String.format(

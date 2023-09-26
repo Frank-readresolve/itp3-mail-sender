@@ -19,5 +19,5 @@ public interface CustomerRepository
     public int getNextValMySequence();
 
     Optional<CustomerView> findByCustomerNumber(
-	    String customerNumber);
+	    Long valueOf);
 }
