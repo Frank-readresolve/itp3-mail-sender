@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.context.SecurityContextHolderFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -30,21 +29,18 @@ public class ApiSecurityConfig {
 	// TODO Auto-generated constructor stub
     }
 
+    @SuppressWarnings("deprecation")
     @Bean
     protected SecurityFilterChain filterChain(
 	    HttpSecurity http) throws Exception {
 	http.csrf().disable().anonymous().disable()
-		.sessionManagement()
-		.sessionCreationPolicy(
-			SessionCreationPolicy.STATELESS)
-		.and()
 		.addFilterBefore(preAuthExceptionFilter(),
 			SecurityContextHolderFilter.class)
 		.addFilterAfter(preAuthFilter(),
-			SecurityContextHolderFilter.class)
+			PreAuthFilter.class)
 		.authorizeRequests()
 		.antMatchers(HttpMethod.POST, "/send-mail")
-		.fullyAuthenticated();
+		.authenticated();
 	return http.build();
     }
 
