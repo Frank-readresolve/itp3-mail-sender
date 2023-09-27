@@ -5,15 +5,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
-import co.simplon.itp3.mailsender.services.CustomerService;
+import co.simplon.itp3.mailsender.services.AuthService;
 
 @Component
 public class PreAuthManager
 	implements AuthenticationManager {
 
-    private final CustomerService service;
+    private final AuthService service;
 
-    public PreAuthManager(CustomerService service) {
+    public PreAuthManager(AuthService service) {
 	this.service = service;
     }
 

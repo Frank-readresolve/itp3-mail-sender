@@ -4,14 +4,12 @@ import java.util.UUID;
 
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import co.simplon.itp3.mailsender.dtos.CreateCustomerDto;
-import co.simplon.itp3.mailsender.dtos.CustomerView;
 import co.simplon.itp3.mailsender.entities.ContactRole;
 import co.simplon.itp3.mailsender.entities.Customer;
 import co.simplon.itp3.mailsender.entities.EmailTemplate;
@@ -122,30 +120,6 @@ public class CustomerServiceImpl
 	    throws UnsupportedOperationException {
 	return this.customers.existsByCustomerName(
 		customerName.toString());
-    }
-
-    @Override
-    public void authenticate(String customerNumber,
-	    String rawKey) throws BadCredentialsException {
-	if ((customerNumber == null)
-		|| customerNumber.equals("")) {
-	    throw new BadCredentialsException(
-		    String.format("Customer not found"));
-	}
-	CustomerView client = customers
-		.findByCustomerNumber(
-			Long.valueOf(customerNumber))
-		.orElseThrow(
-			() -> new BadCredentialsException(
-				String.format(
-					"Customer not found with customer name '%s'",
-					customerNumber)));
-	if (!encoder.matches(rawKey, client.getApiKey())) {
-	    throw new BadCredentialsException(String.format(
-		    "Bad API Key for client with name '%s'",
-		    customerNumber));
-	}
-
     }
 
 }
