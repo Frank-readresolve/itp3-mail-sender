@@ -85,7 +85,7 @@ public class CustomerServiceImpl
 	String emailSubject = emailCustomerTemplate
 		.getTemplateSubject();
 	String replaceSubject = emailSubject.replace(
-		"${client_subject}",
+		"${customer_name}",
 		inputs.getCustomerName());
 
 	String emailBody = emailCustomerTemplate
