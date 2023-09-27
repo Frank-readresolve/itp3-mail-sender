@@ -29,18 +29,19 @@ public class ApiSecurityConfig {
 	// TODO Auto-generated constructor stub
     }
 
-    @SuppressWarnings("deprecation")
     @Bean
     protected SecurityFilterChain filterChain(
 	    HttpSecurity http) throws Exception {
-	http.csrf().disable().anonymous().disable()
+	http.csrf().disable()
 		.addFilterBefore(preAuthExceptionFilter(),
 			SecurityContextHolderFilter.class)
 		.addFilterAfter(preAuthFilter(),
 			PreAuthFilter.class)
 		.authorizeRequests()
 		.antMatchers(HttpMethod.POST, "/send-mail")
-		.authenticated();
+		.fullyAuthenticated()
+		.antMatchers(HttpMethod.POST, "/customers")
+		.anonymous();
 	return http.build();
     }
 

@@ -127,6 +127,11 @@ public class CustomerServiceImpl
     @Override
     public void authenticate(String customerNumber,
 	    String rawKey) throws BadCredentialsException {
+	if ((customerNumber == null)
+		|| customerNumber.equals("")) {
+	    throw new BadCredentialsException(
+		    String.format("Customer not found"));
+	}
 	CustomerView client = customers
 		.findByCustomerNumber(
 			Long.valueOf(customerNumber))

@@ -21,7 +21,7 @@ public class SendEmailDto {
     private String subject;
 
     @NotBlank
-    @Pattern(regexp = "^[a-zA-Z0-9/. $]+$")
+    @Pattern(regexp = "^[a-zA-Z0-9-/. $]+$")
     @Size(min = 1, max = 1000)
     private String body;
 
