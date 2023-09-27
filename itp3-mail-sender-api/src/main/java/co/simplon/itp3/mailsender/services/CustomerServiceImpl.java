@@ -71,13 +71,14 @@ public class CustomerServiceImpl
 	String apiKey = UUID.randomUUID().toString();
 	String apiKeyEncoded = encoder.encode(apiKey);
 	customer.setApiKey(apiKeyEncoded);
-	sendApiKeyEmail(inputs, apiKey);
 	this.customers.save(customer);
+	sendApiKeyEmail(inputs, apiKey,
+		countCustomerNumber);
 
     }
 
     public void sendApiKeyEmail(CreateCustomerDto inputs,
-	    String ApiKey) {
+	    String ApiKey, Long customerNumber) {
 	EmailTemplate emailCustomerTemplate = new EmailTemplate();
 	emailCustomerTemplate = this.emailTemplates
 		.getByTemplateIdentifier("CUSTOMER");
@@ -92,7 +93,9 @@ public class CustomerServiceImpl
 	String replaceBody = emailBody
 		.replace("${contact_firstname}",
 			inputs.getFirstName())
-		.replace("${api_key}", ApiKey);
+		.replace("${api_key}", ApiKey)
+		.replace("${customer_number}",
+			String.valueOf(customerNumber));
 
 	try {
 	    SimpleMailMessage mailMessage = new SimpleMailMessage();
