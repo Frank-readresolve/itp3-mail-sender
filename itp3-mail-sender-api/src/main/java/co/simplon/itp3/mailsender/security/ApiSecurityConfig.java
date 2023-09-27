@@ -38,9 +38,10 @@ public class ApiSecurityConfig {
 		.addFilterAfter(preAuthFilter(),
 			PreAuthFilter.class)
 		.authorizeRequests()
-		.antMatchers(HttpMethod.POST, "/send-mail")
+		.antMatchers(HttpMethod.POST,
+			"/send-attached-mail")
 		.fullyAuthenticated()
-		.antMatchers(HttpMethod.POST, "/customers")
+		.antMatchers(HttpMethod.POST, "/send-mail")
 		.anonymous();
 	return http.build();
     }
@@ -53,8 +54,8 @@ public class ApiSecurityConfig {
 	filter.setContinueFilterChainOnUnsuccessfulAuthentication(
 		false);
 	filter.setRequiresAuthenticationRequestMatcher(
-		new AntPathRequestMatcher("/send-mail",
-			"POST"));
+		new AntPathRequestMatcher(
+			"/send-attached-mail", "POST"));
 	return filter;
     }
 
