@@ -72,6 +72,7 @@ public class EmailServiceImpl implements EmailService {
 	return freeMail;
     }
 
+    @Async
     @Override
     public void sendAuthMail(SendAuthEmailDto inputs)
 	    throws MessagingException {
