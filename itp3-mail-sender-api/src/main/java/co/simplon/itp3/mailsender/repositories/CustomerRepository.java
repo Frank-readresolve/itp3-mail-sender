@@ -20,4 +20,7 @@ public interface CustomerRepository
 
     Optional<CustomerView> findByCustomerNumber(
 	    Long valueOf);
+
+    Customer findCustomerByCustomerNumber(
+	    Long customerNumber);
 }

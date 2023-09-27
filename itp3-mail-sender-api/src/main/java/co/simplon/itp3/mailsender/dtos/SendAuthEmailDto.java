@@ -20,10 +20,6 @@ public class SendAuthEmailDto {
     private String bcc;
 
     @NotBlank
-    @Email
-    private String sender;
-
-    @NotBlank
     @Pattern(regexp = "[a-zA-Z0-9\\s]+")
     @Size(min = 1, max = 100)
     private String subject;
@@ -64,14 +60,6 @@ public class SendAuthEmailDto {
 	this.bcc = bcc;
     }
 
-    public String getSender() {
-	return sender;
-    }
-
-    public void setSender(String sender) {
-	this.sender = sender;
-    }
-
     public String getSubject() {
 	return subject;
     }
@@ -101,9 +89,8 @@ public class SendAuthEmailDto {
 	return "{primaryRecipient="
 		+ Arrays.toString(primaryRecipient)
 		+ ", cc=" + cc + ", bcc=" + bcc
-		+ ", sender=" + sender + ", subject="
-		+ subject + ", body=" + body + ", filePath="
-		+ filePath + "}";
+		+ ", subject=" + subject + ", body=" + body
+		+ ", filePath=" + filePath + "}";
     }
 
 }

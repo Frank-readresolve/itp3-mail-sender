@@ -14,18 +14,23 @@ import org.springframework.stereotype.Service;
 import co.simplon.itp3.mailsender.dtos.SendAuthEmailDto;
 import co.simplon.itp3.mailsender.dtos.SendEmailDto;
 import co.simplon.itp3.mailsender.entities.EmailTemplate;
+import co.simplon.itp3.mailsender.repositories.CustomerRepository;
 import co.simplon.itp3.mailsender.repositories.EmailTemplateRepository;
+import co.simplon.itp3.mailsender.security.SecurityHelper;
 
 @Service
 public class EmailServiceImpl implements EmailService {
 
     private final JavaMailSender javaMailSender;
     private final EmailTemplateRepository emailTemplates;
+    private final CustomerRepository customers;
 
     public EmailServiceImpl(JavaMailSender javaMailSender,
-	    EmailTemplateRepository emailTemplates) {
+	    EmailTemplateRepository emailTemplates,
+	    CustomerRepository customers) {
 	this.javaMailSender = javaMailSender;
 	this.emailTemplates = emailTemplates;
+	this.customers = customers;
     }
 
     @Async
@@ -74,8 +79,14 @@ public class EmailServiceImpl implements EmailService {
 		.createMimeMessage();
 	MimeMessageHelper helper = new MimeMessageHelper(
 		mimeMessage, true);
-	helper.setFrom(inputs.getSender());
-	helper.setReplyTo(inputs.getSender());
+	Long authenticatedCustomer = Long.valueOf(
+		SecurityHelper.authenticatedCustomer());
+	String customerEmail = customers
+		.findCustomerByCustomerNumber(
+			authenticatedCustomer)
+		.getFromReplyTo();
+	helper.setFrom("no-reply.dev@readresolve.io");
+	helper.setReplyTo(customerEmail);
 	helper.setSubject(inputs.getSubject());
 	helper.setTo(inputs.getPrimaryRecipient());
 	if (inputs.getCc() != null) {
