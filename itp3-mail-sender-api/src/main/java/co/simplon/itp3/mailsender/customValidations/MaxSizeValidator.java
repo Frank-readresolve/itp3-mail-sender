@@ -3,8 +3,10 @@ package co.simplon.itp3.mailsender.customValidations;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class MaxSizeValidator
-	implements ConstraintValidator<MaxSize, String> {
+import org.springframework.web.multipart.MultipartFile;
+
+public class MaxSizeValidator implements
+	ConstraintValidator<MaxSize, MultipartFile> {
 
     private static final long MB = 1024 * 1024;
 
@@ -16,13 +18,13 @@ public class MaxSizeValidator
     }
 
     @Override
-    public boolean isValid(String filePath,
+    public boolean isValid(MultipartFile file,
 	    ConstraintValidatorContext constraintValidatorContext) {
 
-	if (filePath == null) {
+	if (file == null) {
 	    return true;
 	}
 
-	return filePath.length() < (maxSizeInMB * MB);
+	return file.getSize() < (maxSizeInMB * MB);
     }
 }

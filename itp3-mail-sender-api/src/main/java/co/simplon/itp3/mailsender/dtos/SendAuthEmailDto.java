@@ -7,6 +7,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import co.simplon.itp3.mailsender.customValidations.MaxSize;
 
 public class SendAuthEmailDto {
@@ -33,7 +35,7 @@ public class SendAuthEmailDto {
     private String body;
 
     @MaxSize(maxSizeInMB = 5)
-    private String filePath;
+    private MultipartFile file;
 
     public SendAuthEmailDto() {
 
@@ -88,12 +90,12 @@ public class SendAuthEmailDto {
 	this.body = body;
     }
 
-    public String getFilePath() {
-	return filePath;
+    public MultipartFile getFile() {
+	return file;
     }
 
-    public void setFilePath(String filePath) {
-	this.filePath = filePath;
+    public void setFile(MultipartFile file) {
+	this.file = file;
     }
 
     @Override
@@ -102,8 +104,8 @@ public class SendAuthEmailDto {
 		+ Arrays.toString(primaryRecipient)
 		+ ", cc=" + cc + ", bcc=" + bcc
 		+ ", sender=" + sender + ", subject="
-		+ subject + ", body=" + body + ", filePath="
-		+ filePath + "}";
+		+ subject + ", body=" + body + ", file="
+		+ file + "}";
     }
 
 }

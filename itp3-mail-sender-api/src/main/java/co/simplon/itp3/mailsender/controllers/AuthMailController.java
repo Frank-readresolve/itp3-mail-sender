@@ -4,8 +4,8 @@ import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +25,7 @@ public class AuthMailController {
     @PostMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void sendAuthMail(
-	    @Valid @RequestBody SendAuthEmailDto inputs)
+	    @Valid @ModelAttribute SendAuthEmailDto inputs)
 	    throws MessagingException {
 	this.service.sendAuthMail(inputs);
     }
